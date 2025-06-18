@@ -781,14 +781,46 @@ const ApproccioLavoro = () => {
 
 const PartnerSection = () => {
   const partners = [
-    { name: "Microsoft", category: "Software & Cloud" },
-    { name: "Intel", category: "Hardware" },
-    { name: "Lenovo", category: "Computing" },
-    { name: "Epson", category: "Printing" },
-    { name: "Herman Miller", category: "Furniture" },
-    { name: "Vitra", category: "Design" },
-    { name: "Fellowes", category: "Office Solutions" },
-    { name: "Logitech", category: "Peripherals" }
+    { 
+      name: "Microsoft", 
+      category: "Software & Cloud",
+      logo: "/images/fornitori/Microsoft_logo.svg"
+    },
+    { 
+      name: "Intel", 
+      category: "Hardware",
+      logo: "/images/fornitori/Intel_logo.svg"
+    },
+    { 
+      name: "Lenovo", 
+      category: "Computing",
+      logo: "/images/fornitori/Lenovo_logo.svg"
+    },
+    { 
+      name: "Epson", 
+      category: "Printing",
+      logo: "/images/fornitori/Epson_logo.svg"
+    },
+    { 
+      name: "Herman Miller", 
+      category: "Furniture",
+      logo: "/images/fornitori/HermanMiller_logo.svg"
+    },
+    { 
+      name: "Vitra", 
+      category: "Design",
+      logo: "/images/fornitori/Logo_vitra.svg"
+    },
+    { 
+      name: "Fellowes", 
+      category: "Office Solutions",
+      logo: "/images/fornitori/Fellowes_Brands_logo.svg"
+    },
+    { 
+      name: "Logitech", 
+      category: "Peripherals",
+      logo: "/images/fornitori/Logitech_logo.svg"
+    }
   ];
 
   return (
@@ -824,8 +856,12 @@ const PartnerSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               <div className="relative z-10 text-center space-y-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl mx-auto flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 border border-primary/20">
-                  <span className="text-lg font-black text-primary">{partner.name.charAt(0)}</span>
+                <div className="w-20 h-20 mx-auto flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                  <img 
+                    src={partner.logo} 
+                    alt={`${partner.name} logo`}
+                    className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                  />
                 </div>
                 
                 <div>
@@ -873,7 +909,7 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
       title: "Informatica",
       description: "Notebook, desktop, server, NAS, networking, licenze software di ultima generazione per la massima produttività aziendale",
       icon: Laptop,
-      image: "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+      image: "/images/informatica.jpg",
       background: "cream",
       features: ["Hardware Enterprise", "Cloud Solutions", "Cybersecurity", "Software Licensing"],
       stats: "2000+ Prodotti",
@@ -883,7 +919,7 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
       title: "Arredo ufficio",
       description: "Mobili modulabili, scrivanie regolabili, sedute ergonomiche, contenitori di design per ambienti di lavoro moderni",
       icon: Chair,
-      image: "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+      image: "/images/arredo-ufficio.jpg",
       background: "white",
       features: ["Design Ergonomico", "Materiali Premium", "Personalizzazione", "Sostenibilità"],
       stats: "1000+ Soluzioni",
@@ -893,7 +929,7 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
       title: "Forniture e materiali",
       description: "Carta, cancelleria, toner, archiviazione e tutti i materiali essenziali per il funzionamento quotidiano dell'ufficio",
       icon: FileText,
-      image: "https://images.pexels.com/photos/1587927/pexels-photo-1587927.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+      image: "/images/forniture-e-materiali.jpg",
       background: "cream",
       features: ["Stock Garantito", "Consegna Express", "Eco-Friendly", "Bulk Pricing"],
       stats: "5000+ Articoli",
@@ -903,7 +939,7 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
       title: "Tecnologia per meeting",
       description: "Proiettori, sistemi di videoconferenza, pannelli interattivi e soluzioni smart per sale riunioni moderne",
       icon: Video,
-      image: "https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
+      image: "/images/meeting-technology.jpg",
       background: "white",
       features: ["4K Technology", "Wireless Solutions", "AI Integration", "Remote Control"],
       stats: "300+ Sistemi",
