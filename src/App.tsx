@@ -1,298 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Monitor, PenTool, Armchair as Chair, Layers, Ear, Lightbulb, Headphones, Laptop, FileText, Building, Video, Mail, MapPin, Phone, Menu, X, ChevronRight, Users, Shield, Zap, Star, Award, TrendingUp, CheckCircle, ArrowRight, Play, Lock, Eye, EyeOff, Save, Download, Bold, Italic, List, ListOrdered, Quote, Code, Link, Image, Undo, Redo, Calendar, User, Briefcase, Globe, Hash, CreditCard, FileText as FileTextIcon } from 'lucide-react';
 
-// Maintenance Page Component
-const MaintenancePage = ({ onAuthenticate, showSecurityWarning = false }: { onAuthenticate: () => void, showSecurityWarning?: boolean }) => {
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-
-    // Simulate loading
-    setTimeout(() => {
-      if (password === 'sitob2bgroup') {
-        onAuthenticate();
-      } else {
-        setError('Password non corretta. Riprova.');
-      }
-      setIsLoading(false);
-    }, 500);
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-cream via-white to-cream flex items-center justify-center p-6 relative overflow-hidden security-box">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-tertiary-red/20 to-primary/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-secondary/10 to-tertiary-red/10 rounded-full blur-2xl animate-pulse delay-2000"></div>
-      </div>
-
-      <div className="relative z-10 max-w-md w-full">
-        <div className="bg-white/95 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-primary/10">
-          {/* Security Warning Banner */}
-          {showSecurityWarning && (
-            <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 mb-6">
-              <div className="flex items-center space-x-2 mb-2">
-                <div className="text-red-500 text-xl">🚨</div>
-                <p className="text-red-700 font-bold text-sm">VIOLAZIONE DI SICUREZZA RILEVATA</p>
-              </div>
-              <p className="text-red-600 text-xs leading-relaxed">
-                È stato rilevato un tentativo di screenshot o accesso non autorizzato. 
-                <strong> È assolutamente vietato:</strong>
-              </p>
-              <ul className="text-red-600 text-xs mt-2 space-y-1">
-                <li>• Eseguire screenshot o catture dello schermo</li>
-                <li>• Tentare di riprodurre o clonare il contenuto</li>
-                <li>• Accedere a informazioni sensibili della codebase</li>
-                <li>• Utilizzare DevTools o strumenti di sviluppo</li>
-              </ul>
-              <p className="text-red-700 text-xs font-semibold mt-2">
-                La violazione di queste regole comporta la revoca permanente dell'accesso.
-              </p>
-              <div className="mt-2 text-center">
-                <div className="text-blue-600 font-bold text-xs tracking-wider font-mono">Vite Preview Protection System</div>
-              </div>
-            </div>
-          )}
-
-          {/* Logo and Title */}
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-6">
-              <img 
-                src="/images/logo/b2bgrouplogo.svg" 
-                alt="B2B Group Logo" 
-                className="w-16 h-16 object-contain"
-              />
-            </div>
-            <h1 className="text-3xl font-black text-dark-gray mb-2">
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Sito in Manutenzione
-              </span>
-            </h1>
-            <p className="text-dark-gray/70 font-medium">
-              Stiamo migliorando il nostro sito per offrirti un'esperienza migliore
-            </p>
-          </div>
-
-          {/* Maintenance Icon */}
-          <div className="flex justify-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
-              <Lock className="w-10 h-10 text-white" />
-            </div>
-          </div>
-
-          {/* Access Form */}
-          <div className="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-6 border border-primary/20">
-            <h2 className="text-xl font-bold text-dark-gray mb-4 text-center">
-              Accesso Addetti
-            </h2>
-            
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="password" className="block text-dark-gray font-semibold mb-2">
-                  Password
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 font-medium"
-                    placeholder="Inserisci la password"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-dark-gray/50 hover:text-dark-gray transition-colors duration-300"
-                  >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                  </button>
-                </div>
-              </div>
-
-              {error && (
-                <div className="bg-red-50 border border-red-200 rounded-xl p-3">
-                  <p className="text-red-600 text-sm font-medium">{error}</p>
-                </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-              >
-                {isLoading ? (
-                  <span className="flex items-center justify-center">
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
-                    Verificando...
-                  </span>
-                ) : (
-                  'Accedi al Sito'
-                )}
-              </button>
-            </form>
-          </div>
-
-          {/* Info */}
-          <div className="mt-6 text-center">
-            <p className="text-sm text-dark-gray/60 font-medium">
-              La sessione scade ogni 60 minuti per motivi di sicurezza
-            </p>
-            <div className="mt-2">
-              <div className="text-blue-600 font-bold text-xs tracking-wider font-mono">Vite Preview Protection System</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Preview Mode Box Component
-const PreviewModeBox = ({ onSessionExpire }: { onSessionExpire: () => void }) => {
-  const [timeLeft, setTimeLeft] = useState(60 * 60); // 60 minutes in seconds
-  const [userInfo, setUserInfo] = useState({
-    ip: 'Rilevamento...',
-    location: 'Analisi...',
-    browser: '',
-    os: '',
-    screen: '',
-    language: '',
-    timezone: ''
-  });
-  const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    // Get user agent information
-    const userAgent = navigator.userAgent;
-    const browser = userAgent.includes('Chrome') ? 'Chrome' : 
-                   userAgent.includes('Firefox') ? 'Firefox' : 
-                   userAgent.includes('Safari') ? 'Safari' : 
-                   userAgent.includes('Edge') ? 'Edge' : 'Unknown';
-    
-    const os = userAgent.includes('Windows') ? 'Windows' : 
-               userAgent.includes('Mac') ? 'macOS' : 
-               userAgent.includes('Linux') ? 'Linux' : 
-               userAgent.includes('Android') ? 'Android' : 
-               userAgent.includes('iOS') ? 'iOS' : 'Unknown';
-
-    // Get screen information
-    const screenResolution = `${window.screen.width}x${window.screen.height}`;
-    
-    // Get language and timezone
-    const language = navigator.language || 'Unknown';
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-    setUserInfo({
-      ip: 'Rilevamento...',
-      location: 'Analisi...',
-      browser,
-      os,
-      screen: screenResolution,
-      language,
-      timezone
-    });
-
-    // Simulate IP and location detection
-    setTimeout(() => {
-      setUserInfo(prev => ({
-        ...prev,
-        ip: '192.168.1.100', // Simulated IP
-        location: 'Roma, Italia' // Simulated location
-      }));
-    }, 2000);
-
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev <= 1) {
-          // Session expired, redirect to maintenance page
-          onSessionExpire();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [onSessionExpire]);
-
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-  };
-
-  return (
-    <div className="fixed bottom-4 right-4 z-50 preview-mode-box">
-      <div 
-        className="bg-white/95 backdrop-blur-lg rounded-xl p-4 shadow-2xl border-2 border-red-500/20 hover:border-red-500/40 transition-all duration-300 group"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="space-y-2">
-          {/* Default view - always visible */}
-          <div className="flex items-center space-x-3">
-            <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-            <div>
-              <div className="text-red-500 font-bold text-sm">PREVIEW MODE</div>
-              <div className="text-red-500 font-mono text-lg font-black">{formatTime(timeLeft)}</div>
-              <div className="text-red-500/60 text-xs mt-1 max-w-48">
-                ⚠️ File riservato, non pubblicare, clonare o riprodurre
-              </div>
-            </div>
-          </div>
-          
-          {/* Detailed information - only on hover */}
-          {isHovered && (
-            <>
-              <div className="border-t border-red-500/20 pt-2">
-                <div className="space-y-1 text-xs">
-                  <div className="flex justify-between">
-                    <span className="text-red-500/60">IP:</span>
-                    <span className="text-red-500 font-mono">{userInfo.ip}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-red-500/60">Browser:</span>
-                    <span className="text-red-500">{userInfo.browser}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-red-500/60">OS:</span>
-                    <span className="text-red-500">{userInfo.os}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-red-500/60">Schermo:</span>
-                    <span className="text-red-500 font-mono">{userInfo.screen}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-red-500/60">Lingua:</span>
-                    <span className="text-red-500">{userInfo.language}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-red-500/60">Fuso orario:</span>
-                    <span className="text-red-500">{userInfo.timezone}</span>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-          
-          <div className="border-t border-red-500/20 pt-2">
-            <div className="text-blue-600/60 font-bold text-xs tracking-wider font-mono">Vite Preview Protection System</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -322,13 +30,8 @@ const Header = () => {
               <img 
                 src="/images/logo/b2bgrouplogo.svg" 
                 alt="B2B Group Logo" 
-                className="w-12 h-12 object-contain"
+                className="w-32 h-32 object-contain"
               />
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full animate-pulse"></div>
-            </div>
-            <div>
-              <span className="text-2xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">B2B Group</span>
-              <div className="text-xs text-dark-gray/60 font-semibold">OFFICE SOLUTIONS</div>
             </div>
           </div>
           
@@ -420,7 +123,7 @@ const HeroSection = () => {
             <div className="space-y-6">
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-secondary/10 px-6 py-3 rounded-full border border-primary/20">
                 <Star className="w-5 h-5 text-secondary" />
-                <span className="text-primary font-semibold">Soluzioni Premium per Uffici</span>
+                <span className="text-primary font-semibold">Soluzioni Premium per Imprese</span>
               </div>
               
               <h1 className="text-5xl md:text-7xl font-black text-dark-gray leading-tight">
@@ -428,18 +131,18 @@ const HeroSection = () => {
                   Soluzioni complete
                 </span>
                 <br />
-                <span className="text-dark-gray">per l'ufficio</span>
+                <span className="text-dark-gray">per l'impresa</span>
                 <br />
                 <span className="bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-                  moderno
+                  moderna
                 </span>
               </h1>
               
               <p className="text-xl md:text-2xl text-dark-gray/80 font-light leading-relaxed max-w-2xl">
                 <span className="font-semibold text-primary">Informatica</span>, 
                 <span className="font-semibold text-secondary"> arredo</span> e 
-                <span className="font-semibold text-tertiary-red"> materiali per ufficio</span> — 
-                forniture professionali per aziende di ogni dimensione.
+                <span className="font-semibold text-tertiary-red"> materiali per impresa</span> — 
+                forniture professionali per imprese di ogni dimensione.
               </p>
             </div>
 
@@ -499,7 +202,7 @@ const HeroSection = () => {
               </div>
 
               <div className="text-center space-y-4">
-                <h3 className="text-2xl font-black text-dark-gray">Tutto per il tuo ufficio</h3>
+                <h3 className="text-2xl font-black text-dark-gray">Tutto per la tua impresa</h3>
                 <p className="text-dark-gray/70 font-semibold">in un'unica soluzione professionale</p>
                 
                 <div className="flex justify-center space-x-2 pt-4">
@@ -544,7 +247,7 @@ const SettoriPrincipali = () => {
     },
     {
       icon: PenTool,
-      title: "Forniture per ufficio",
+      title: "Forniture per impresa",
       description: "Carta, toner, accessori, cancelleria di qualità premium",
       color: "from-secondary to-orange-600",
       bgColor: "from-secondary/10 to-orange-100/50",
@@ -553,7 +256,7 @@ const SettoriPrincipali = () => {
     },
     {
       icon: Chair,
-      title: "Arredo per ufficio",
+      title: "Arredo per impresa",
       description: "Scrivanie, sedute ergonomiche, scaffalature design",
       color: "from-tertiary-red to-red-600",
       bgColor: "from-tertiary-red/10 to-red-100/50",
@@ -568,7 +271,21 @@ const SettoriPrincipali = () => {
       bgColor: "from-purple-100/50 to-pink-100/50",
       stats: "300+ Progetti",
       features: ["Progettazione 3D", "Installazione", "Smart Technology", "Supporto 24/7"]
-    }
+    },
+    {
+      icon: Layers, // Puoi scegliere un'icona più adatta se vuoi
+      title: "Macchinari industriali",
+      description: "Forniture di macchinari industriali per industrie alimentari e non: linee di produzione, confezionamento, automazione, impianti su misura",
+      color: "from-green-700 to-lime-500",
+      bgColor: "from-green-100/50 to-lime-100/50",
+      stats: "500+ Macchinari",
+      features: [
+        "Impianti alimentari",
+        "Linee di confezionamento",
+        "Automazione industriale",
+        "Soluzioni personalizzate"
+      ]
+    },
   ];
 
   return (
@@ -593,7 +310,7 @@ const SettoriPrincipali = () => {
             </span>
           </h2>
           <p className="text-xl text-dark-gray/70 font-light max-w-3xl mx-auto leading-relaxed">
-            Offriamo soluzioni complete e innovative per ogni esigenza aziendale, 
+            Offriamo soluzioni complete e innovative per ogni esigenza imprenditoriale, 
             dalla tecnologia all'arredo, con un approccio integrato e personalizzato
           </p>
         </div>
@@ -944,7 +661,22 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
       features: ["4K Technology", "Wireless Solutions", "AI Integration", "Remote Control"],
       stats: "300+ Sistemi",
       color: "from-purple-600 to-pink-600"
-    }
+    },
+    {
+      title: "Macchinari industriali",
+      description: "Macchinari e impianti per industrie alimentari e non: produzione, confezionamento, automazione, soluzioni su misura per ogni esigenza industriale",
+      icon: Layers, // Puoi scegliere un'icona più adatta se vuoi
+      image: "/images/forniture-e-materiali.jpg", // Sostituisci con un'immagine più adatta se disponibile
+      background: "cream",
+      features: [
+        "Impianti alimentari",
+        "Linee di produzione",
+        "Confezionamento",
+        "Automazione industriale"
+      ],
+      stats: "500+ Macchinari",
+      color: "from-green-700 to-lime-500"
+    },
   ];
 
   return (
@@ -963,7 +695,7 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
           </h2>
           <p className="text-xl text-dark-gray/70 font-light max-w-3xl mx-auto leading-relaxed">
             Scopri la nostra gamma completa di prodotti e servizi organizzati per settore, 
-            con soluzioni innovative per ogni esigenza aziendale
+            con soluzioni innovative per ogni esigenza imprenditoriale
           </p>
         </div>
 
@@ -1065,12 +797,16 @@ const ContattiSection = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
     email: '',
     messaggio: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Messaggio inviato! Ti contatteremo presto.');
-    setFormData({ nome: '', email: '', messaggio: '' });
+    setIsSubmitting(true);
+    setTimeout(() => {
+      alert('Messaggio inviato! Ti contatteremo presto.');
+      setFormData({ nome: '', email: '', messaggio: '' });
+      setIsSubmitting(false);
+    }, 1000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -1251,13 +987,19 @@ const ContattiSection = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-secondary to-white text-primary py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden group"
+                className="w-full px-8 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-secondary to-primary text-white hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span className="relative z-10 flex items-center">
-                  Invia richiesta
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <span>Invio in corso...</span>
+                  </>
+                ) : (
+                  <>
+                    <Save className="w-5 h-5 mr-2" />
+                    <span>Invia richiesta</span>
+                  </>
+                )}
               </button>
             </form>
 
@@ -1282,926 +1024,12 @@ const Footer = () => {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23107A72' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
       </div>
-
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
-          <div className="md:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
-              <img 
-                src="/images/logo/b2bgrouplogo.svg" 
-                alt="B2B Group Logo" 
-                className="w-12 h-12 object-contain"
-              />
-              <div>
-                <span className="text-2xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">B2B Group</span>
-                <div className="text-xs text-white/60 font-semibold">OFFICE SOLUTIONS</div>
-              </div>
-            </div>
-            <p className="text-white/80 font-light leading-relaxed mb-6 max-w-md">
-              Da oltre 15 anni forniamo soluzioni complete per l'ufficio moderno, 
-              combinando tecnologia all'avanguardia, design funzionale e servizio eccellente.
-            </p>
-            <div className="flex space-x-4">
-              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300 cursor-pointer">
-                <span className="text-white font-bold">f</span>
-              </div>
-              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300 cursor-pointer">
-                <span className="text-white font-bold">in</span>
-              </div>
-              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300 cursor-pointer">
-                <span className="text-white font-bold">@</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-white font-black mb-4">Servizi</h3>
-            <ul className="space-y-3">
-              {[
-                "Informatica aziendale",
-                "Arredo ufficio",
-                "Forniture materiali",
-                "Tecnologie meeting",
-                "Consulenza IT",
-                "Supporto tecnico"
-              ].map((service, idx) => (
-                <li key={idx}>
-                  <a href="#" className="text-white/70 hover:text-secondary transition-colors duration-300 font-medium">
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-black mb-4">Azienda</h3>
-            <ul className="space-y-3">
-              {[
-                "Chi siamo",
-                "I nostri partner",
-                "Certificazioni",
-                "Sostenibilità",
-                "Carriere",
-                "News & Eventi"
-              ].map((item, idx) => (
-                <li key={idx}>
-                  <a href="#" className="text-white/70 hover:text-secondary transition-colors duration-300 font-medium">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-white/20 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-6">
-              <p className="text-white/60 text-sm font-medium">
-                © 2024 B2B Group. Tutti i diritti riservati.
-              </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-white/60 hover:text-white text-sm font-medium transition-colors duration-300">
-                  Privacy Policy
-                </a>
-                <a href="#" className="text-white/60 hover:text-white text-sm font-medium transition-colors duration-300">
-                  Cookie Policy
-                </a>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2 text-white/60 text-sm">
-              <span>Made with</span>
-              <div className="w-4 h-4 bg-gradient-to-r from-secondary to-primary rounded-full"></div>
-              <span>in Rome, Italy</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </footer>
   );
 };
 
-// Anti-Screenshot Protection Component
-const AntiScreenshotProtection = ({ onSessionExpire }: { onSessionExpire: () => void }) => {
-  const [isBlurred, setIsBlurred] = useState(false);
-  const [countdown, setCountdown] = useState(5);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Detect common screenshot shortcuts
-      const isScreenshotShortcut = 
-        (e.ctrlKey && e.key === 'p') || // Ctrl+P (Print)
-        (e.ctrlKey && e.shiftKey && e.key === 'I') || // Ctrl+Shift+I (DevTools)
-        (e.ctrlKey && e.shiftKey && e.key === 'C') || // Ctrl+Shift+C (DevTools)
-        (e.ctrlKey && e.shiftKey && e.key === 'J') || // Ctrl+Shift+J (DevTools)
-        (e.key === 'F12') || // F12 (DevTools)
-        (e.ctrlKey && e.key === 'u') || // Ctrl+U (View Source)
-        (e.ctrlKey && e.shiftKey && e.key === 'S') || // Ctrl+Shift+S (Save Page As)
-        (e.metaKey && e.shiftKey && e.key === '4') || // Cmd+Shift+4 (Mac Screenshot)
-        (e.metaKey && e.shiftKey && e.key === '3') || // Cmd+Shift+3 (Mac Screenshot)
-        (e.key === 'PrintScreen') || // PrintScreen key
-        (e.altKey && e.key === 'PrintScreen') || // Alt+PrintScreen
-        (e.key === 'Stamp') || // Stamp key (Italian keyboard)
-        (e.metaKey && e.shiftKey && e.key === 'S') || // Windows+Shift+S (Windows Snipping Tool)
-        (e.ctrlKey && e.shiftKey && e.key === 'S' && e.metaKey); // Windows+Shift+S (alternative detection)
-
-      if (isScreenshotShortcut) {
-        e.preventDefault();
-        setIsBlurred(true);
-        setCountdown(5);
-        
-        // Start countdown timer
-        const countdownTimer = setInterval(() => {
-          setCountdown(prev => {
-            if (prev <= 1) {
-              clearInterval(countdownTimer);
-              onSessionExpire();
-              return 0;
-            }
-            return prev - 1;
-          });
-        }, 1000);
-      }
-    };
-
-    const handleContextMenu = (e: MouseEvent) => {
-      // Prevent right-click context menu
-      e.preventDefault();
-      setIsBlurred(true);
-      setCountdown(5);
-      
-      // Start countdown timer
-      const countdownTimer = setInterval(() => {
-        setCountdown(prev => {
-          if (prev <= 1) {
-            clearInterval(countdownTimer);
-            onSessionExpire();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    };
-
-    const handleSelectStart = (e: Event) => {
-      // Prevent text selection (common in screenshot attempts)
-      e.preventDefault();
-    };
-
-    const handleDragStart = (e: Event) => {
-      // Prevent drag operations
-      e.preventDefault();
-    };
-
-    // Add event listeners
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('contextmenu', handleContextMenu);
-    document.addEventListener('selectstart', handleSelectStart);
-    document.addEventListener('dragstart', handleDragStart);
-
-    // Cleanup
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('contextmenu', handleContextMenu);
-      document.removeEventListener('selectstart', handleSelectStart);
-      document.removeEventListener('dragstart', handleDragStart);
-    };
-  }, [onSessionExpire]);
-
-  if (!isBlurred) return null;
-
-  return (
-    <div className="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-xl flex items-center justify-center security-box">
-      <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border-2 border-red-500/50 text-center max-w-md">
-        <div className="text-red-500 text-4xl mb-4">🚫</div>
-        <h2 className="text-2xl font-black text-red-500 mb-2">Accesso Negato</h2>
-        <p className="text-dark-gray/80 font-medium mb-4">
-          Screenshot e riproduzioni non sono consentiti
-        </p>
-        <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-4">
-          <p className="text-red-700 text-sm font-semibold mb-2">⚠️ AVVISO DI SICUREZZA</p>
-          <p className="text-red-600 text-xs leading-relaxed">
-            È vietato eseguire screenshot, tentativi di riproduzione o accesso a informazioni sensibili della codebase. 
-            La violazione di queste regole comporta la revoca immediata dell'accesso.
-          </p>
-        </div>
-        <div className="text-red-500 font-mono text-lg font-black mb-2">
-          Reindirizzamento in: {countdown}s
-        </div>
-        <p className="text-sm text-dark-gray/60">
-          File riservato - Vite Preview Protection System
-        </p>
-        <div className="mt-2 text-center">
-          <div className="text-blue-600 font-bold text-xs tracking-wider font-mono">Vite Preview Protection System</div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Custom Cursor Component
-const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(true); // Start as true
-
-  useEffect(() => {
-    // Hide default cursor when custom cursor is active
-    if (isHovering) {
-      document.body.style.cursor = 'none';
-    } else {
-      document.body.style.cursor = 'auto';
-    }
-
-    return () => {
-      document.body.style.cursor = 'auto';
-    };
-  }, [isHovering]);
-
-  useEffect(() => {
-    const updateCursor = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      // Don't show custom cursor on security boxes
-      if (target.closest('.security-box') || target.closest('.preview-mode-box')) {
-        setIsHovering(false);
-      } else {
-        setIsHovering(true);
-      }
-    };
-
-    document.addEventListener('mousemove', updateCursor);
-    document.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      document.removeEventListener('mousemove', updateCursor);
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
-  return (
-    <>
-      {/* Main cursor dot */}
-      <div 
-        className="fixed pointer-events-none z-[9999] transition-transform duration-100 ease-out"
-        style={{ 
-          left: position.x - 4, 
-          top: position.y - 4,
-          transform: 'scale(1)',
-          opacity: isHovering ? 1 : 0
-        }}
-      >
-        <div className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full shadow-lg animate-pulse"></div>
-      </div>
-      
-      {/* Outer ring */}
-      <div 
-        className="fixed pointer-events-none z-[9998] transition-all duration-300 ease-out"
-        style={{ 
-          left: position.x - 12, 
-          top: position.y - 12,
-          transform: 'scale(1)',
-          opacity: isHovering ? 1 : 0
-        }}
-      >
-        <div className="w-6 h-6 border-2 border-primary/30 rounded-full animate-spin" style={{ animationDuration: '3s' }}></div>
-      </div>
-      
-      {/* Glow effect */}
-      <div 
-        className="fixed pointer-events-none z-[9997] transition-all duration-500 ease-out"
-        style={{ 
-          left: position.x - 20, 
-          top: position.y - 20,
-          transform: 'scale(1)',
-          opacity: isHovering ? 1 : 0
-        }}
-      >
-        <div className="w-10 h-10 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-sm animate-pulse" style={{ animationDuration: '2s' }}></div>
-      </div>
-    </>
-  );
-};
-
-// Quote Request Page Component
-const QuoteRequestPage = ({ onBack }: { onBack: () => void }) => {
-  const [companyData, setCompanyData] = useState({
-    companyName: '',
-    vatNumber: '',
-    fiscalCode: '',
-    address: '',
-    city: '',
-    postalCode: '',
-    province: '',
-    country: 'Italia',
-    phone: '',
-    email: '',
-    website: '',
-    sector: '',
-    employees: '',
-    contactPerson: '',
-    contactRole: '',
-    contactPhone: '',
-    contactEmail: ''
-  });
-
-  const [markdownContent, setMarkdownContent] = useState(`# Richiesta Preventivo
-
-## Descrizione del Progetto
-
-Descrivi qui il tuo progetto in dettaglio...
-
-## Esigenze Specifiche
-
-- **Numero di postazioni**: 
-- **Tipologia di ufficio**: 
-- **Budget indicativo**: 
-- **Tempi di consegna desiderati**: 
-
-## Prodotti/Servizi Richiesti
-
-### Informatica
-- [ ] PC Desktop
-- [ ] Notebook
-- [ ] Server
-- [ ] Software
-- [ ] Periferiche
-
-### Arredo
-- [ ] Scrivanie
-- [ ] Sedie
-- [ ] Armadi
-- [ ] Accessori
-
-### Forniture
-- [ ] Carta
-- [ ] Toner
-- [ ] Cancelleria
-- [ ] Archiviazione
-
-## Note Aggiuntive
-
-Inserisci qui eventuali note o requisiti particolari...
-
----
-*Preventivo richiesto il: ${new Date().toLocaleDateString('it-IT')}*
-`);
-
-  const [isPreview, setIsPreview] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleCompanyDataChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setCompanyData({
-      ...companyData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const insertMarkdown = (text: string) => {
-    const textarea = document.getElementById('markdown-editor') as HTMLTextAreaElement;
-    if (textarea) {
-      const start = textarea.selectionStart;
-      const end = textarea.selectionEnd;
-      const before = markdownContent.substring(0, start);
-      const after = markdownContent.substring(end);
-      const newContent = before + text + after;
-      setMarkdownContent(newContent);
-      
-      // Set cursor position after inserted text
-      setTimeout(() => {
-        textarea.focus();
-        textarea.setSelectionRange(start + text.length, start + text.length);
-      }, 0);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      alert('Preventivo inviato con successo! Ti contatteremo entro 24 ore.');
-      setIsSubmitting(false);
-    }, 2000);
-  };
-
-  const downloadMarkdown = () => {
-    const blob = new Blob([markdownContent], { type: 'text/markdown' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `preventivo-${companyData.companyName || 'azienda'}-${new Date().toISOString().split('T')[0]}.md`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  const renderMarkdownPreview = (content: string) => {
-    // Simple markdown rendering
-    return content
-      .replace(/^### (.*$)/gim, '<h3 class="text-lg font-bold text-primary mb-2">$1</h3>')
-      .replace(/^## (.*$)/gim, '<h2 class="text-xl font-bold text-dark-gray mb-3">$1</h2>')
-      .replace(/^# (.*$)/gim, '<h1 class="text-2xl font-black text-primary mb-4">$1</h1>')
-      .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
-      .replace(/^- \[ \] (.*$)/gim, '<div class="flex items-center space-x-2 mb-1"><input type="checkbox" disabled class="w-4 h-4 text-primary"> <span>$1</span></div>')
-      .replace(/^- \[x\] (.*$)/gim, '<div class="flex items-center space-x-2 mb-1"><input type="checkbox" checked disabled class="w-4 h-4 text-primary"> <span class="line-through">$1</span></div>')
-      .replace(/^- (.*$)/gim, '<li class="ml-4">$1</li>')
-      .replace(/\n/g, '<br>');
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-cream via-white to-cream py-24">
-      <div className="container mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <button 
-            onClick={onBack}
-            className="inline-flex items-center space-x-2 text-primary hover:text-secondary transition-colors duration-300 mb-6"
-          >
-            <ArrowRight className="w-5 h-5 rotate-180" />
-            <span className="font-semibold">Torna al sito</span>
-          </button>
-          
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-secondary/10 px-6 py-3 rounded-full border border-primary/20 mb-6">
-            <FileTextIcon className="w-5 h-5 text-primary" />
-            <span className="text-primary font-semibold">Richiesta Preventivo</span>
-          </div>
-          
-          <h1 className="text-4xl md:text-6xl font-black text-dark-gray mb-6">
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Richiesta Preventivo
-            </span>
-          </h1>
-          <p className="text-xl text-dark-gray/70 font-light max-w-3xl mx-auto leading-relaxed">
-            Compila i dati della tua azienda e descrivi le tue esigenze per ricevere un preventivo personalizzato
-          </p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Company Data Form */}
-            <div className="space-y-8">
-              <div className="bg-white rounded-3xl p-8 shadow-2xl border border-primary/10">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
-                    <Building className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-black text-dark-gray">Dati Aziendali</h2>
-                    <p className="text-dark-gray/60 font-medium">Informazioni della società</p>
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Nome Azienda *
-                    </label>
-                    <input
-                      type="text"
-                      name="companyName"
-                      value={companyData.companyName}
-                      onChange={handleCompanyDataChange}
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="Nome della tua azienda"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Partita IVA
-                    </label>
-                    <input
-                      type="text"
-                      name="vatNumber"
-                      value={companyData.vatNumber}
-                      onChange={handleCompanyDataChange}
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="IT12345678901"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Codice Fiscale
-                    </label>
-                    <input
-                      type="text"
-                      name="fiscalCode"
-                      value={companyData.fiscalCode}
-                      onChange={handleCompanyDataChange}
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="RSSMRA80A01H501U"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Settore
-                    </label>
-                    <select
-                      name="sector"
-                      value={companyData.sector}
-                      onChange={handleCompanyDataChange}
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                    >
-                      <option value="">Seleziona settore</option>
-                      <option value="tecnologia">Tecnologia</option>
-                      <option value="finanza">Finanza</option>
-                      <option value="sanita">Sanità</option>
-                      <option value="istruzione">Istruzione</option>
-                      <option value="legale">Legale</option>
-                      <option value="consulenza">Consulenza</option>
-                      <option value="altro">Altro</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Numero Dipendenti
-                    </label>
-                    <select
-                      name="employees"
-                      value={companyData.employees}
-                      onChange={handleCompanyDataChange}
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                    >
-                      <option value="">Seleziona range</option>
-                      <option value="1-10">1-10 dipendenti</option>
-                      <option value="11-50">11-50 dipendenti</option>
-                      <option value="51-200">51-200 dipendenti</option>
-                      <option value="201-500">201-500 dipendenti</option>
-                      <option value="500+">Oltre 500 dipendenti</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Sito Web
-                    </label>
-                    <input
-                      type="url"
-                      name="website"
-                      value={companyData.website}
-                      onChange={handleCompanyDataChange}
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="https://www.azienda.com"
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <label className="block text-dark-gray font-bold mb-2">
-                    Indirizzo Completo
-                  </label>
-                  <input
-                    type="text"
-                    name="address"
-                    value={companyData.address}
-                    onChange={handleCompanyDataChange}
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                    placeholder="Via Roma 123"
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-4 mt-4">
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Città *
-                    </label>
-                    <input
-                      type="text"
-                      name="city"
-                      value={companyData.city}
-                      onChange={handleCompanyDataChange}
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="Roma"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      CAP *
-                    </label>
-                    <input
-                      type="text"
-                      name="postalCode"
-                      value={companyData.postalCode}
-                      onChange={handleCompanyDataChange}
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="00100"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Provincia *
-                    </label>
-                    <input
-                      type="text"
-                      name="province"
-                      value={companyData.province}
-                      onChange={handleCompanyDataChange}
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="RM"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Contact Person */}
-              <div className="bg-white rounded-3xl p-8 shadow-2xl border border-primary/10">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-secondary to-tertiary-red rounded-xl flex items-center justify-center">
-                    <User className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-black text-dark-gray">Persona di Contatto</h2>
-                    <p className="text-dark-gray/60 font-medium">Referente per il progetto</p>
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Nome e Cognome *
-                    </label>
-                    <input
-                      type="text"
-                      name="contactPerson"
-                      value={companyData.contactPerson}
-                      onChange={handleCompanyDataChange}
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="Mario Rossi"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Ruolo
-                    </label>
-                    <input
-                      type="text"
-                      name="contactRole"
-                      value={companyData.contactRole}
-                      onChange={handleCompanyDataChange}
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="Amministratore Delegato"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Telefono *
-                    </label>
-                    <input
-                      type="tel"
-                      name="contactPhone"
-                      value={companyData.contactPhone}
-                      onChange={handleCompanyDataChange}
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="+39 06 123 456 789"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-dark-gray font-bold mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      name="contactEmail"
-                      value={companyData.contactEmail}
-                      onChange={handleCompanyDataChange}
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-primary/20 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                      placeholder="mario.rossi@azienda.com"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Markdown Editor */}
-            <div className="space-y-8">
-              <div className="bg-white rounded-3xl p-8 shadow-2xl border border-primary/10">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-tertiary-red to-primary rounded-xl flex items-center justify-center">
-                      <FileTextIcon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-black text-dark-gray">Richiesta Dettagliata</h2>
-                      <p className="text-dark-gray/60 font-medium">Editor Markdown</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center space-x-2">
-                    <button
-                      type="button"
-                      onClick={() => setIsPreview(!isPreview)}
-                      className="flex items-center space-x-2 px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors duration-300"
-                    >
-                      {isPreview ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
-                      <span className="text-sm font-semibold">{isPreview ? 'Modifica' : 'Anteprima'}</span>
-                    </button>
-                    
-                    <button
-                      type="button"
-                      onClick={downloadMarkdown}
-                      className="flex items-center space-x-2 px-4 py-2 rounded-lg bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors duration-300"
-                    >
-                      <Download className="w-4 h-4" />
-                      <span className="text-sm font-semibold">Scarica</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Markdown Toolbar */}
-                <div className="flex flex-wrap items-center gap-2 mb-4 p-3 bg-gray-50 rounded-xl border border-primary/10">
-                  <button
-                    type="button"
-                    onClick={() => insertMarkdown('**testo in grassetto**')}
-                    className="p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
-                    title="Grassetto"
-                  >
-                    <Bold className="w-4 h-4 text-primary" />
-                  </button>
-                  
-                  <button
-                    type="button"
-                    onClick={() => insertMarkdown('*testo in corsivo*')}
-                    className="p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
-                    title="Corsivo"
-                  >
-                    <Italic className="w-4 h-4 text-primary" />
-                  </button>
-                  
-                  <div className="w-px h-6 bg-primary/20"></div>
-                  
-                  <button
-                    type="button"
-                    onClick={() => insertMarkdown('# Titolo 1')}
-                    className="p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
-                    title="Titolo 1"
-                  >
-                    <span className="text-sm font-bold text-primary">H1</span>
-                  </button>
-                  
-                  <button
-                    type="button"
-                    onClick={() => insertMarkdown('## Titolo 2')}
-                    className="p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
-                    title="Titolo 2"
-                  >
-                    <span className="text-sm font-bold text-primary">H2</span>
-                  </button>
-                  
-                  <button
-                    type="button"
-                    onClick={() => insertMarkdown('### Titolo 3')}
-                    className="p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
-                    title="Titolo 3"
-                  >
-                    <span className="text-sm font-bold text-primary">H3</span>
-                  </button>
-                  
-                  <div className="w-px h-6 bg-primary/20"></div>
-                  
-                  <button
-                    type="button"
-                    onClick={() => insertMarkdown('- Elemento lista')}
-                    className="p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
-                    title="Lista puntata"
-                  >
-                    <List className="w-4 h-4 text-primary" />
-                  </button>
-                  
-                  <button
-                    type="button"
-                    onClick={() => insertMarkdown('1. Elemento numerato')}
-                    className="p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
-                    title="Lista numerata"
-                  >
-                    <ListOrdered className="w-4 h-4 text-primary" />
-                  </button>
-                  
-                  <button
-                    type="button"
-                    onClick={() => insertMarkdown('- [ ] Checkbox vuoto')}
-                    className="p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
-                    title="Checkbox"
-                  >
-                    <span className="text-sm text-primary">☐</span>
-                  </button>
-                  
-                  <div className="w-px h-6 bg-primary/20"></div>
-                  
-                  <button
-                    type="button"
-                    onClick={() => insertMarkdown('> Citazione')}
-                    className="p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
-                    title="Citazione"
-                  >
-                    <Quote className="w-4 h-4 text-primary" />
-                  </button>
-                  
-                  <button
-                    type="button"
-                    onClick={() => insertMarkdown('`codice`')}
-                    className="p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
-                    title="Codice inline"
-                  >
-                    <Code className="w-4 h-4 text-primary" />
-                  </button>
-                </div>
-
-                {/* Markdown Editor/Preview */}
-                {isPreview ? (
-                  <div className="min-h-[500px] p-6 bg-gray-50 rounded-xl border border-primary/10 overflow-y-auto">
-                    <div 
-                      className="prose prose-lg max-w-none"
-                      dangerouslySetInnerHTML={{ __html: renderMarkdownPreview(markdownContent) }}
-                    />
-                  </div>
-                ) : (
-                  <textarea
-                    id="markdown-editor"
-                    value={markdownContent}
-                    onChange={(e) => setMarkdownContent(e.target.value)}
-                    className="w-full min-h-[500px] p-6 bg-gray-50 rounded-xl border border-primary/10 text-dark-gray placeholder-dark-gray/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 resize-none font-mono text-sm leading-relaxed"
-                    placeholder="Inizia a scrivere la tua richiesta in Markdown..."
-                  />
-                )}
-              </div>
-
-              {/* Submit Button */}
-              <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-3xl p-8 border border-primary/20">
-                <div className="text-center space-y-6">
-                  <div>
-                    <h3 className="text-2xl font-black text-dark-gray mb-2">Invia Richiesta</h3>
-                    <p className="text-dark-gray/70 font-medium">
-                      Il nostro team analizzerà la tua richiesta e ti contatterà entro 24 ore
-                    </p>
-                  </div>
-                  
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-secondary to-white text-primary py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        <span>Invio in corso...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Save className="w-5 h-5" />
-                        <span>Invia Richiesta Preventivo</span>
-                      </>
-                    )}
-                  </button>
-                  
-                  <p className="text-sm text-dark-gray/60 font-medium">
-                    ✓ Consulenza gratuita • ✓ Preventivo personalizzato • ✓ Risposta entro 24h
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [showSecurityWarning, setShowSecurityWarning] = useState(false);
+const App = () => {
   const [showQuoteRequest, setShowQuoteRequest] = useState(false);
-
-  const handleAuthentication = () => {
-    setAuthenticated(true);
-    setShowSecurityWarning(false);
-  };
-
-  const handleSessionExpire = () => {
-    setAuthenticated(false);
-    setShowSecurityWarning(true);
-  };
 
   const handleShowQuoteRequest = () => {
     setShowQuoteRequest(true);
@@ -2212,32 +1040,17 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-cream">
-      {authenticated ? (
-        <>
-          {showQuoteRequest ? (
-            <QuoteRequestPage onBack={handleBackToSite} />
-          ) : (
-            <>
-              <Header />
-              <HeroSection />
-              <SettoriPrincipali />
-              <ApproccioLavoro />
-              <PartnerSection />
-              <CatalogoSettori onQuoteRequest={handleShowQuoteRequest} />
-              <ContattiSection onQuoteRequest={handleShowQuoteRequest} />
-              <Footer />
-            </>
-          )}
-          <PreviewModeBox onSessionExpire={handleSessionExpire} />
-          <AntiScreenshotProtection onSessionExpire={handleSessionExpire} />
-          <CustomCursor />
-        </>
-      ) : (
-        <MaintenancePage onAuthenticate={handleAuthentication} showSecurityWarning={showSecurityWarning} />
-      )}
-    </div>
+    <>
+      <Header />
+      <HeroSection />
+      <SettoriPrincipali />
+      <ApproccioLavoro />
+      <PartnerSection />
+      <CatalogoSettori onQuoteRequest={handleShowQuoteRequest} />
+      <ContattiSection onQuoteRequest={handleShowQuoteRequest} />
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;
