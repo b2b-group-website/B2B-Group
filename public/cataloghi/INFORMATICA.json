@@ -201,7 +201,7 @@
         ]
     },
     {
-        "ID;PRODOTTO;PREZZO;IMMAGINE": "95;\"APPLE iMac AIO",
+        "ID;PRODOTTO;PREZZO;IMMAGINE": "95;\"APPLE iMac AIO 8/1TB",
         "null": [
             " 21",
             "5 \"\"",
@@ -213,7 +213,7 @@
         ]
     },
     {
-        "ID;PRODOTTO;PREZZO;IMMAGINE": "96;\"APPLE iMac AIO",
+        "ID;PRODOTTO;PREZZO;IMMAGINE": "96;\"APPLE iMac AIO 8/256",
         "null": [
             " 21",
             "5 \"\"",
@@ -236,7 +236,7 @@
         ]
     },
     {
-        "ID;PRODOTTO;PREZZO;IMMAGINE": "98;APPLE Mac Mini",
+        "ID;PRODOTTO;PREZZO;IMMAGINE": "98;APPLE Mac Mini 16/256",
         "null": [
             " Chip M4",
             " 10 CPU 10 GPU",
@@ -246,7 +246,7 @@
         ]
     },
     {
-        "ID;PRODOTTO;PREZZO;IMMAGINE": "99;APPLE Mac Mini",
+        "ID;PRODOTTO;PREZZO;IMMAGINE": "99;APPLE Mac Mini 16/512",
         "null": [
             " Chip M4",
             " 10 CPU 10 GPU",
@@ -256,7 +256,7 @@
         ]
     },
     {
-        "ID;PRODOTTO;PREZZO;IMMAGINE": "100;APPLE Mac Mini",
+        "ID;PRODOTTO;PREZZO;IMMAGINE": "100;APPLE Mac Mini M2/512",
         "null": [
             " Chip M2",
             " 8 CPU 10 GPU",
@@ -265,7 +265,7 @@
         ]
     },
     {
-        "ID;PRODOTTO;PREZZO;IMMAGINE": "101;APPLE Mac Mini",
+        "ID;PRODOTTO;PREZZO;IMMAGINE": "101;APPLE Mac Mini 24/512",
         "null": [
             " Chip M4",
             " 10 CPU 10 GPU",

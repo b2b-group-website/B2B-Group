@@ -630,7 +630,7 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
       color: "from-secondary to-orange-600"
     },
     {
-      title: "Forniture e materiali",
+      title: "Forniture da ufficio",
       description: "Carta, cancelleria, toner, archiviazione e materiali essenziali per l'ufficio.",
       icon: FileText,
       image: "/images/forniture-e-materiali.jpg",
@@ -810,37 +810,37 @@ const ContattiSection = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div className="space-y-8">
-            <div className="space-y-8">
-              <div className="group flex items-start space-x-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Mail className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-black text-white mb-2">Email</h3>
-                  <p className="text-white/80 text-lg font-semibold">info@b2b-group.it</p>
-                  <p className="text-white/60 font-medium mt-1">Risposta garantita entro 2 ore</p>
-                </div>
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-20">
+          {/* Colonna sinistra: contatti */}
+          <div className="flex flex-col gap-8 justify-center">
+            <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Mail className="w-10 h-10 text-white" />
               </div>
-
-              <div className="group flex items-start space-x-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <MapPin className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-black text-white mb-2">Sede principale</h3>
-                  <p className="text-white/80 text-lg font-semibold">
-                    Circonvallazione Clodia, 163/167<br />
-                    00195 Roma – Italia
-                  </p>
-                  <p className="text-white/60 font-medium mt-1">Showroom aperto su appuntamento</p>
-                </div>
+              <div>
+                <h3 className="text-2xl font-black text-white mb-2">Email</h3>
+                <p className="text-white/80 text-lg font-semibold">info@b2b-group.it</p>
+                <p className="text-white/60 font-medium mt-1">Risposta garantita entro 2 ore</p>
               </div>
             </div>
-
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-              <h3 className="text-2xl font-black text-white mb-6">Perché scegliere B2B Group?</h3>
+            <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <MapPin className="w-10 h-10 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-black text-white mb-2">Sede principale</h3>
+                <p className="text-white/80 text-lg font-semibold">
+                  Circonvallazione Clodia, 163/167<br />
+                  00195 Roma – Italia
+                </p>
+                <p className="text-white/60 font-medium mt-1">Showroom aperto su appuntamento</p>
+              </div>
+            </div>
+          </div>
+          {/* Colonna destra: benefit */}
+          <div className="flex flex-col justify-center h-full">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-10 border-2 border-secondary/40 shadow-xl">
+              <h3 className="text-2xl font-black text-white mb-6 text-center">Perché scegliere B2B Group?</h3>
               <div className="space-y-4">
                 {[
                   "Consulenza gratuita e personalizzata",
@@ -855,86 +855,6 @@ const ContattiSection = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300">
-            <div className="mb-8">
-              <h3 className="text-2xl font-black text-white mb-2">Richiedi un preventivo</h3>
-              <p className="text-white/80 font-medium">Compila il form e riceverai una risposta personalizzata</p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="nome" className="block text-white font-bold mb-3">
-                  Nome completo *
-                </label>
-                <input
-                  type="text"
-                  id="nome"
-                  name="nome"
-                  value={formData.nome}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-6 py-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:border-white/60 focus:bg-white/30 transition-all duration-300"
-                  placeholder="Il tuo nome e cognome"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-white font-bold mb-3">
-                  Email aziendale *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-6 py-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:border-white/60 focus:bg-white/30 transition-all duration-300"
-                  placeholder="nome@azienda.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="messaggio" className="block text-white font-bold mb-3">
-                  Descrivi il tuo progetto *
-                </label>
-                <textarea
-                  id="messaggio"
-                  name="messaggio"
-                  rows={5}
-                  value={formData.messaggio}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-6 py-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:border-white/60 focus:bg-white/30 transition-all duration-300 resize-none font-semibold"
-                  placeholder="Raccontaci di cosa hai bisogno: numero di postazioni, tipologia di ufficio, budget indicativo..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full px-8 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-secondary to-primary text-white hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    <span>Invio in corso...</span>
-                  </>
-                ) : (
-                  <>
-                    <Save className="w-5 h-5 mr-2" />
-                    <span>Invia richiesta</span>
-                  </>
-                )}
-              </button>
-            </form>
-
-            <div className="mt-6 text-center">
-              <p className="text-white/60 text-sm font-medium">
-                Rispondiamo entro 2 ore lavorative • Consulenza sempre gratuita
-              </p>
             </div>
           </div>
         </div>
@@ -952,6 +872,18 @@ const Footer = () => {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23107A72' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
       </div>
+      <div className="relative z-10 container mx-auto px-6 flex flex-col items-center justify-center text-center">
+        <h2 className="text-3xl md:text-5xl font-black text-white mb-6 drop-shadow-lg">
+          Hai bisogno di un preventivo personalizzato?
+        </h2>
+        <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+          Il nostro team ti risponde rapidamente! Clicca sul pulsante qui sotto per inviare una mail diretta al nostro reparto preventivi.
+        </p>
+        <a href="mailto:preventivi@b2b-group.it" className="inline-block bg-gradient-to-r from-primary to-secondary text-white text-xl font-bold px-10 py-5 rounded-full shadow-2xl hover:scale-105 hover:shadow-primary/40 transition-all duration-300 mb-4">
+          Richiedi Preventivo via Email
+        </a>
+        <p className="text-white/60 text-sm mt-2">Risposta garantita entro 2 ore lavorative</p>
+      </div>
     </footer>
   );
 };
@@ -963,8 +895,8 @@ const findProductImage = (imgName: string, catalogo: string) => {
   if (catalogo === 'informatica') subfolder = 'informatica';
   else if (catalogo === 'arredo') subfolder = 'arredo';
   else if (catalogo === 'alimentare') subfolder = 'impiantistica';
+  else if (catalogo === 'ufficio') subfolder = 'ufficio';
   const extensions = ['.webp', '.jfif', '.jpg', '.jpeg', '.png'];
-  // Restituisco un array di possibili path, sarà il componente <img> a gestire il fallback
   return extensions.map(ext => `/images/ecommerce/${subfolder}/${imgName}${ext}`);
 };
 
@@ -997,6 +929,40 @@ const parseCatalogProduct = (item: any, catalogo?: string): any => {
     if (!nome || prezzo <= 0) return null;
     return {
       id,
+      nome,
+      prezzo,
+      immagine
+    };
+  }
+  if (catalogo === 'ufficio') {
+    // Parsing specifico per UFFICIO.json
+    let nome = '';
+    let prezzo = 0;
+    let immagine = '';
+    // Nome prodotto dal primo campo stringa
+    const firstKey = Object.keys(item)[0];
+    nome = item[firstKey];
+    // Cerca prezzo e immagine nell'ultimo elemento di 'null'
+    const nullArr = item.null || [];
+    if (nullArr.length > 0) {
+      const last = nullArr[nullArr.length - 1];
+      const parts = last.split(';');
+      if (parts.length === 2) {
+        // Esempio: "00 €;nomefileimmagine"
+        immagine = parts[1];
+        // Provo a trovare il prezzo in altri elementi
+        for (let i = nullArr.length - 1; i >= 0; i--) {
+          const p = nullArr[i].split(';');
+          if (p.length === 2 && !isNaN(Number(p[1].replace(/\D/g, '')))) {
+            prezzo = parseFloat(p[1].replace(/\D/g, ''));
+            break;
+          }
+        }
+      }
+    }
+    if (!nome || !immagine) return null;
+    return {
+      id: nome + immagine,
       nome,
       prezzo,
       immagine
@@ -1082,13 +1048,11 @@ const EcommercePage = ({ onBack }: { onBack: () => void }) => {
     },
     {
       key: 'forniture',
-      title: 'Forniture e materiali',
+      title: 'Forniture da ufficio',
       description: "Carta, cancelleria, toner, archiviazione e materiali essenziali per l'ufficio.",
       image: '/images/forniture-e-materiali.jpg',
       accentColor: 'from-tertiary-red to-red-600',
       cta: 'Scopri le forniture',
-      comingSoon: true,
-      comingSoonText: 'In arrivo a breve!',
     },
     {
       key: 'alimentare',
@@ -1108,6 +1072,7 @@ const EcommercePage = ({ onBack }: { onBack: () => void }) => {
     if (catalogo === 'alimentare') file = '/cataloghi/catalogo_ecommerce_b2b_alimentare.json';
     else if (catalogo === 'informatica') file = '/cataloghi/INFORMATICA.json';
     else if (catalogo === 'arredo') file = '/cataloghi/ARREDO.json';
+    else if (catalogo === 'ufficio') file = '/cataloghi/UFFICIO.json';
     fetch(file)
       .then(res => res.json())
       .then(data => {
@@ -1122,7 +1087,7 @@ const EcommercePage = ({ onBack }: { onBack: () => void }) => {
       <div className={`transition-opacity duration-700 ${fanFadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <ProductPreviewFan
           categories={categories}
-          onSelectCategory={key => setCatalogo(key)}
+          onSelectCategory={key => setCatalogo(key === 'forniture' ? 'ufficio' : key)}
           onEnterEcommerce={() => {
             setFanFadeOut(true);
             setTimeout(() => {
@@ -1159,6 +1124,7 @@ const EcommercePage = ({ onBack }: { onBack: () => void }) => {
           <button onClick={() => setCatalogo('informatica')} className={`px-6 py-2 rounded-full font-bold ${catalogo==='informatica' ? 'bg-primary text-white' : 'bg-white border'}`}>Informatica</button>
           <button onClick={() => setCatalogo('arredo')} className={`px-6 py-2 rounded-full font-bold ${catalogo==='arredo' ? 'bg-primary text-white' : 'bg-white border'}`}>Arredo</button>
           <button onClick={() => setCatalogo('alimentare')} className={`px-6 py-2 rounded-full font-bold ${catalogo==='alimentare' ? 'bg-primary text-white' : 'bg-white border'}`}>Arredamento per industrie alimentari</button>
+          <button onClick={() => setCatalogo('ufficio')} className={`px-6 py-2 rounded-full font-bold ${catalogo==='ufficio' ? 'bg-primary text-white' : 'bg-white border'}`}>Forniture da ufficio</button>
         </div>
         {catalogo === 'arredo'
           ? <ArredoGrid prodotti={prodotti.filter(p => p && p.nome && p.prezzo > 0)} />
@@ -1196,9 +1162,80 @@ const EcommercePage = ({ onBack }: { onBack: () => void }) => {
   );
 };
 
+const EcommerceUfficioPage = () => {
+  const [prodottiUfficio, setProdottiUfficio] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (prodottiUfficio.length === 0) {
+      fetch('/cataloghi/UFFICIO.json')
+        .then(res => res.json())
+        .then(data => {
+          // Parsing simile a quello già usato per altri cataloghi
+          const prodotti = data.map((item: any) => {
+            let nome = '';
+            let descrizione = '';
+            let prezzo = '';
+            let immagine = '';
+            // Parsing generico
+            const nullArr = item.null || [];
+            // Trova nome e immagine
+            if (nullArr.length > 0) {
+              const last = nullArr[nullArr.length - 1];
+              const parts = last.split(';');
+              if (parts.length > 1) {
+                prezzo = parts[0].replace('00 €', '').trim();
+                immagine = parts[1];
+              } else {
+                immagine = parts[0];
+              }
+            }
+            // Trova nome prodotto
+            for (const key in item) {
+              if (key.includes(';')) {
+                nome = item[key];
+              }
+            }
+            // Trova descrizione
+            for (const key in item) {
+              if (key.startsWith('00 €')) {
+                descrizione = item[key];
+              }
+            }
+            return { nome, descrizione, prezzo, immagine };
+          });
+          setProdottiUfficio(prodotti);
+        });
+    }
+  }, []);
+
+  return (
+    <div className="container mx-auto py-16 px-4">
+      <h2 className="text-3xl md:text-5xl font-black text-primary mb-10 text-center">Ecommerce Ufficio</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {prodottiUfficio.map((prodotto, idx) => (
+          <div key={idx} className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center">
+            <div className="w-full aspect-square flex items-center justify-center mb-4">
+              <img
+                src={`/images/ecommerce/ufficio/${prodotto.immagine}.webp`}
+                alt={prodotto.nome}
+                className="object-contain w-full h-full rounded-xl"
+                onError={e => { e.currentTarget.style.display = 'none'; }}
+              />
+            </div>
+            <h3 className="text-lg font-bold text-dark-gray mb-2 text-center">{prodotto.nome}</h3>
+            <p className="text-gray-500 text-sm mb-2 text-center">{prodotto.descrizione}</p>
+            <div className="text-primary font-black text-xl mb-2">{prodotto.prezzo ? prodotto.prezzo + ' €' : ''}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const App = () => {
   const [showQuoteRequest, setShowQuoteRequest] = useState(false);
   const [showEcommerce, setShowEcommerce] = useState(false);
+  const [page, setPage] = useState<'home' | 'ecommerce' | 'ecommerce-ufficio'>('home');
 
   const handleShowQuoteRequest = () => {
     setShowQuoteRequest(true);
@@ -1220,6 +1257,7 @@ const App = () => {
       <CatalogoSettori onQuoteRequest={handleShowQuoteRequest} />
       <ContattiSection onQuoteRequest={handleShowQuoteRequest} />
       <Footer />
+      {page === 'ecommerce-ufficio' && <EcommerceUfficioPage />}
     </>
   );
 };

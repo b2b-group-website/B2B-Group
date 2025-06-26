@@ -92,7 +92,7 @@ const ProductPreviewFan: React.FC<ProductPreviewFanProps> = ({
                 rotate: isMobile ? 0 : `${angle}deg`,
               }}
               initial={false}
-              animate={expanded ? { scale: 1.08, y: -20, boxShadow: "0 8px 32px 0 rgba(0,0,0,0.25)" } : { scale: 1, y: 0, boxShadow: "0 2px 8px 0 rgba(0,0,0,0.10)" }}
+              animate={expanded ? { scale: 1.08, y: -20 } : { scale: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               onMouseEnter={() => !isMobile && setHovered(cat.key)}
               onMouseLeave={() => !isMobile && setHovered(null)}
