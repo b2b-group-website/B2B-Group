@@ -942,22 +942,22 @@ const parseCatalogProduct = (item: any, catalogo?: string): any => {
     // Nome prodotto dal primo campo stringa
     const firstKey = Object.keys(item)[0];
     nome = item[firstKey];
-    // Cerca prezzo e immagine nell'ultimo elemento di 'null'
+    // Cerca prezzo e immagine nell'array 'null'
     const nullArr = item.null || [];
+    // Trova immagine (sempre nell'ultimo elemento, dopo il punto e virgola)
     if (nullArr.length > 0) {
       const last = nullArr[nullArr.length - 1];
       const parts = last.split(';');
       if (parts.length === 2) {
-        // Esempio: "00 €;nomefileimmagine"
         immagine = parts[1];
-        // Provo a trovare il prezzo in altri elementi
-        for (let i = nullArr.length - 1; i >= 0; i--) {
-          const p = nullArr[i].split(';');
-          if (p.length === 2 && !isNaN(Number(p[1].replace(/\D/g, '')))) {
-            prezzo = parseFloat(p[1].replace(/\D/g, ''));
-            break;
-          }
-        }
+      }
+    }
+    // Trova prezzo: cerca la prima stringa che contiene ';' e dopo il ';' c'è un numero
+    for (let i = 0; i < nullArr.length; i++) {
+      const p = nullArr[i].split(';');
+      if (p.length === 2 && !isNaN(Number(p[1].replace(/\D/g, ''))) && p[1].replace(/\D/g, '') !== '' && !p[1].includes('€')) {
+        prezzo = parseFloat(p[1].replace(/\D/g, ''));
+        break;
       }
     }
     if (!nome || !immagine) return null;
