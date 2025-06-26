@@ -62,9 +62,9 @@
         ]
     },
     {
-        "ID;settore;prodotto;prezzo;immagine": "11;bar;Forno per pane/pizza 1 camera;465",
+        "ID;settore;prodotto;prezzo;immagine": "11;bar;Forno per pane pizza 1 camera;465",
         "null": [
-            "00 €;forno_per_pane/pizza_1_camera"
+            "00 €;forno_per_pane_pizza_1_camera"
         ]
     },
     {
@@ -207,12 +207,6 @@
         "ID;settore;prodotto;prezzo;immagine": "34;pizzeria;Tagliaverdure tagliamozzarella in alluminio;639",
         "null": [
             "00 €;tagliaverdure_tagliamozzarella_in_alluminio"
-        ]
-    },
-    {
-        "ID;settore;prodotto;prezzo;immagine": "35;pizzeria;Forno pizza combo PO9;4.300",
-        "null": [
-            "00 €;forno_pizza_combo_po9"
         ]
     },
     {

@@ -959,19 +959,13 @@ const Footer = () => {
 // Utility per trovare l'immagine giusta tra tutte le sottocartelle e formati
 const findProductImage = (imgName: string, catalogo: string) => {
   if (!imgName) return undefined;
-  // Sottocartella in base al catalogo
   let subfolder = '';
   if (catalogo === 'informatica') subfolder = 'informatica';
   else if (catalogo === 'arredo') subfolder = 'arredo';
   else if (catalogo === 'alimentare') subfolder = 'impiantistica';
-  // Prova tutte le estensioni più comuni
-  const extensions = ['.jpg', '.jpeg', '.png', '.webp', '.jfif'];
-  for (const ext of extensions) {
-    const path = `/images/ecommerce/${subfolder}/${imgName}${ext}`;
-    // Non posso verificare l'esistenza lato client, ma l'img mostrerà solo se il file esiste
-    return path;
-  }
-  return undefined;
+  const extensions = ['.webp', '.jfif', '.jpg', '.jpeg', '.png'];
+  // Restituisco un array di possibili path, sarà il componente <img> a gestire il fallback
+  return extensions.map(ext => `/images/ecommerce/${subfolder}/${imgName}${ext}`);
 };
 
 const parseCatalogProduct = (item: any, catalogo?: string): any => {
@@ -997,7 +991,7 @@ const parseCatalogProduct = (item: any, catalogo?: string): any => {
     const nullArr = item.null || [];
     if (nullArr.length > 0) {
       const imgStr = nullArr[nullArr.length - 1]?.split(';')[1];
-      if (imgStr) immagine = findProductImage(imgStr, catalogo);
+      if (imgStr) immagine = imgStr; // solo nome base, senza estensione
     }
     // Mostra solo prodotti con nome e prezzo > 0
     if (!nome || prezzo <= 0) return null;
@@ -1013,7 +1007,7 @@ const parseCatalogProduct = (item: any, catalogo?: string): any => {
   const [id, settore, prodotto, prezzo] = item[key].split(';');
   const imgArr = item.null && item.null[0] ? item.null[0].split(';') : [];
   let immagine;
-  if (imgArr[1]) immagine = findProductImage(imgArr[1], settore?.toLowerCase() || '');
+  if (imgArr[1]) immagine = imgArr[1]; // solo nome base, senza estensione
   if (!prodotto || !prezzo || parseFloat(prezzo.replace(/\D/g, '')) <= 0) return null;
   return {
     id: id || Math.random().toString(),
@@ -1026,21 +1020,16 @@ const parseCatalogProduct = (item: any, catalogo?: string): any => {
 
 const ProductImage = ({ imgName, catalogo, size }: { imgName: string, catalogo: string, size?: string }) => {
   const [currentExt, setCurrentExt] = useState(0);
-  const extensions = ['.jpg', '.jpeg', '.png', '.webp', '.jfif'];
-  let subfolder = '';
-  if (catalogo === 'informatica') subfolder = 'informatica';
-  else if (catalogo === 'arredo') subfolder = 'arredo';
-  else if (catalogo === 'alimentare') subfolder = 'impiantistica';
-  if (!imgName) return <div className="w-32 h-32 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">Nessuna immagine</div>;
-  const path = `/images/ecommerce/${subfolder}/${imgName}${extensions[currentExt]}`;
+  const paths = findProductImage(imgName, catalogo);
   const sizeClass = size === 'grande' ? 'w-80 h-80 md:w-[420px] md:h-[420px]' : 'w-32 h-32';
+  if (!imgName || !paths || paths.length === 0) return <div className="w-32 h-32 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">Nessuna immagine</div>;
   return (
     <img
-      src={path}
+      src={paths[currentExt]}
       alt={imgName}
       className={`${sizeClass} object-contain mb-4`}
       onError={() => {
-        if (currentExt < extensions.length - 1) setCurrentExt(currentExt + 1);
+        if (currentExt < paths.length - 1) setCurrentExt(currentExt + 1);
       }}
     />
   );
@@ -1051,7 +1040,7 @@ const ArredoGrid = ({ prodotti }: { prodotti: any[] }) => (
     {prodotti.map(prodotto => (
       <div key={prodotto.id} className="flex flex-col md:flex-row bg-white/90 rounded-3xl shadow-2xl overflow-hidden border border-primary/10">
         <div className="flex-1 flex items-center justify-center bg-gray-50 p-8 min-h-[420px] min-w-[320px]">
-          {prodotto.immagine && <ProductImage imgName={prodotto.immagine.replace(/^.*[\\/]/, '').replace(/\.[^/.]+$/, '')} catalogo="arredo" size="grande" />}
+          {prodotto.immagine && <ProductImage imgName={prodotto.immagine} catalogo="arredo" size="grande" />}
         </div>
         <div className="flex-1 flex flex-col justify-between p-8">
           <div>
@@ -1176,7 +1165,7 @@ const EcommercePage = ({ onBack }: { onBack: () => void }) => {
           : <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {loading ? <div>Caricamento prodotti...</div> : prodotti.filter(p => p && p.nome && p.prezzo > 0).map(prodotto => (
                 <div key={prodotto.id} className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
-                  {prodotto.immagine && <ProductImage imgName={prodotto.immagine.replace(/^.*[\\/]/, '').replace(/\.[^/.]+$/, '')} catalogo={catalogo} />}
+                  {prodotto.immagine && <ProductImage imgName={prodotto.immagine} catalogo={catalogo} />}
                   <div className="font-bold text-lg mb-2 text-center">{prodotto.nome}</div>
                   <div className="text-primary font-black text-xl mb-2">{prodotto.prezzo.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })}</div>
                   <button onClick={() => aggiungiAlCarrello(prodotto)} className="mt-auto bg-gradient-to-r from-secondary to-primary text-white px-6 py-3 rounded-xl font-bold hover:scale-105 transition-all duration-300">Aggiungi al carrello</button>

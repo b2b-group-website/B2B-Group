@@ -81,17 +81,6 @@
         ]
     },
     {
-        "ID;PRODOTTO;PREZZO;IMMAGINE": "83;ACER MINI DESKTOP DT.R3PET.005 Veriton N N2590G Mini PC",
-        "null": [
-            " Intel®",
-            " Intel i5-1334U",
-            " Iris® X?",
-            " RAM 8 GB",
-            " 512 GB SSD;567",
-            "00 €;acer_mini_desktop_dt_r3pet_005_veriton_n_n2590g_mini_pc_intel®_intel_i5_1334u_iris®_x?_ram_8_gb_512_gb_ssd"
-        ]
-    },
-    {
         "ID;PRODOTTO;PREZZO;IMMAGINE": "84;ACER DESKTOP GAMING Predator Orion X POX-650 (Senza Sistema Operativo)",
         "null": [
             " Intel Core i7-13700",
