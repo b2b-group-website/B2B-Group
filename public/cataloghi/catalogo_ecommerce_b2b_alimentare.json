@@ -1,5 +1,149 @@
 [
     {
+        "nome": "Friggitrice a 2 vasche gas",
+        "descrizione": "70 x 80 x 85 17+17 LT",
+        "prezzo": "3.500,00 €",
+        "immagine": "friggitrice_a_2_vasche_gas_70_x_80_x_85_17+17_lt"
+    },
+    {
+        "nome": "Fry top gas liscio rigato",
+        "descrizione": "70 x 80 x85",
+        "prezzo": "3.300,00 €",
+        "immagine": "fry_top_gas_liscio_rigato_70_x_80_x85"
+    },
+    {
+        "nome": "Cassettiera neutra 3 cassetti",
+        "descrizione": "40 x 70 x 85 con alzatina",
+        "prezzo": "800,00 €",
+        "immagine": "cassettiera_neutra_3_cassetti_40_x_70_x_85_con_alzatina"
+    },
+    {
+        "nome": "Cuocipasta gas",
+        "descrizione": "80 x 70 x 85 incluso 3 cesti normali + due cesti inox",
+        "prezzo": "5.800,00 €",
+        "immagine": "cuocipasta_gas_80_x_70_x_85_incluso_3_cesti_normali_+_due_cesti_inox"
+    },
+    {
+        "nome": "Cucina gas 6 fuochi forno",
+        "descrizione": "120 x 70 x 85",
+        "prezzo": "5.400,00 €",
+        "immagine": "cucina_gas_6_fuochi_forno_120_x_70_x_85"
+    },
+    {
+        "nome": "Abbattitore temperatura",
+        "descrizione": "75 x 70 x 85 5 teglie",
+        "prezzo": "5.800,00 €",
+        "immagine": "abbattitore_temperatura_75_x_70_x_85_5_teglie"
+    },
+    {
+        "nome": "Tavolo neutro aperto con ripiano",
+        "descrizione": "40 x 70 x 85 a 5 teglie",
+        "prezzo": "300,00 €",
+        "immagine": "tavolo_neutro_aperto_con_ripiano_40_x_70_x_85_a_5_teglie"
+    },
+    {
+        "nome": "Tavolo inox per inserimento abbattitore",
+        "descrizione": "100 x 70 x 85",
+        "prezzo": "300,00 €",
+        "immagine": "tavolo_inox_per_inserimento_abbattitore_100_x_70_x_85"
+    },
+    {
+        "nome": "Forno elettrico a 5 teglie autopulente",
+        "descrizione": "con sonde al cuore in dotazione",
+        "prezzo": "6.850,00 €",
+        "immagine": "forno_elettrico_a_5_teglie_autopulente_con_sonde_al_cuore_in_dotazione"
+    },
+    {
+        "nome": "Cappa sopraforno Alcapone",
+        "descrizione": "a filtri interni",
+        "prezzo": "1.980,00 €",
+        "immagine": "cappa_sopraforno_alcapone_a_filtri_interni"
+    },
+    {
+        "nome": "Fontana a leva normale",
+        "descrizione": "",
+        "prezzo": "200,00 €",
+        "immagine": "fontana_a_leva_normale"
+    },
+    {
+        "nome": "Lavello a 2 vasche con gocciolatoio aperto e ripiano",
+        "descrizione": "",
+        "prezzo": "820,00 €",
+        "immagine": "lavello_a_2_vasche_con_gocciolatoio_aperto_e_ripiano"
+    },
+    {
+        "nome": "Base frigo a 3 porte completa di motore a bordo e alzatina",
+        "descrizione": "",
+        "prezzo": "1.600,00 €",
+        "immagine": "base_frigo_a_3_porte_completa_di_motore_a_bordo_e_alzatina"
+    },
+    {
+        "nome": "Base per congelatore a 3 porte con alzatina in dotazione",
+        "descrizione": "",
+        "prezzo": "1.900,00 €",
+        "immagine": "base_per_congelatore_a_3_porte_con_alzatina_in_dotazione"
+    },
+    {
+        "nome": "Tavolo inox aperto con ripiano ed alzatina",
+        "descrizione": "",
+        "prezzo": "400,00 €",
+        "immagine": "tavolo_inox_aperto_con_ripiano_ed_alzatina"
+    },
+    {
+        "nome": "Lampade calde colore luce rossa",
+        "descrizione": "",
+        "prezzo": "200,00 €",
+        "immagine": "lampade_calde_colore_luce_rossa"
+    },
+    {
+        "nome": "Microonde nero",
+        "descrizione": "31 LT",
+        "prezzo": "350,00 €",
+        "immagine": "microonde_nero_31_lt"
+    },
+    {
+        "nome": "Cappottina P100",
+        "descrizione": "70 x 75 x 180",
+        "prezzo": "4.600,00 €",
+        "immagine": "cappottina_p100_70_x_75_x_180"
+    },
+    {
+        "nome": "Lavello a doppia vasca completo di gocciolatoio a sbalzo aperto",
+        "descrizione": "160 x 70 x 85",
+        "prezzo": "1.150,00 €",
+        "immagine": "lavello_a_doppia_vasca_completo_di_gocciolatoio_a_sbalzo_aperto_160_x_70_x_85"
+    },
+    {
+        "nome": "Tavolo inox con foro sbarazzo aperto",
+        "descrizione": "70 x 70 x 85",
+        "prezzo": "600,00 €",
+        "immagine": "tavolo_inox_con_foro_sbarazzo_aperto_70_x_70_x_85"
+    },
+    {
+        "nome": "Doccetta alta SAMMIC",
+        "descrizione": "",
+        "prezzo": "400,00 €",
+        "immagine": "doccetta_alta_sammic"
+    },
+    {
+        "nome": "Tavolo inox aperto con ripiano 150 x 70 x 85 no alzatina",
+        "descrizione": "",
+        "prezzo": "400,00 €",
+        "immagine": "tavolo_inox_aperto_con_ripiano_150_x_70_x_85_no_alzatina"
+    },
+    {
+        "nome": "Armadio frigo a 2 porte 1.400 lt",
+        "descrizione": "80 x 140 x 210",
+        "prezzo": "1.950,00 €",
+        "immagine": "armadio_frigo_a_2_porte_1_400_lt_80_x_140_x_210"
+    },
+    {
+        "nome": "Vetrina bibita 1 porta colore nero",
+        "descrizione": "60 x 60 x 185",
+        "prezzo": "1.100,00 €",
+        "immagine": "vetrina_bibita_1_porta_colore_nero_60_x_60_x_185"
+    },
+    {
         "ID;settore;prodotto;prezzo;immagine": "1;bar;Vetrina refrigerata da banco 55 lt;200",
         "null": [
             "00 €;vetrina_refrigerata_da_banco_55_lt"
@@ -448,5 +592,155 @@
         "null": [
             "00 €;friggitrice_elettrica_per_pasticceria_da_banco_16_lt"
         ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "345;fatt;Friggitrice a 2 vasche gas 70 x 80 x 85 17+17 LT;3.500",
+        "null": [
+            "00 €;friggitrice_a_2_vasche_gas_70_x_80_x_85_17+17_lt"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "346;fatt;Fry top gas liscio rigato 70 x 80 x85;3.300",
+        "null": [
+            "00 €;fry_top_gas_liscio_rigato_70_x_80_x85"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "347;fatt;Cassettiera neutra 3 cassetti 40 x 70 x 85  con alzatina;800",
+        "null": [
+            "00 €;cassettiera_neutra_3_cassetti_40_x_70_x_85_con_alzatina"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "348;fatt;Cuocipasta gas 80 x 70 x 85 incluso 3 cesti normali + due cesti inox;5.800",
+        "null": [
+            "00 €;cuocipasta_gas_80_x_70_x_85_incluso_3_cesti_normali_+_due_cesti_inox"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "349;fatt;Cucina gas 6 fuochi forno 120 x 70 x 85;5.400",
+        "null": [
+            "00 €;cucina_gas_6_fuochi_forno_120_x_70_x_85"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "350;fatt;Abbattitore temperatura 75 x 70 x 85 5 teglie;5.800",
+        "null": [
+            "00 €;abbattitore_temperatura_75_x_70_x_85_5_teglie"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "351;fatt;Tavolo neutro aperto con ripiano 40 x 70 x 85 a 5 teglie;300",
+        "null": [
+            "00 €;tavolo_neutro_aperto_con_ripiano_40_x_70_x_85_a_5_teglie"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "352;fatt;Tavolo inox per inserimento abbattitore 100 x 70 x 85;300",
+        "null": [
+            "00 €;tavolo_inox_per_inserimento_abbattitore_100_x_70_x_85"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "353;fatt;Forno elettrico a 5 teglie autopulente con sonde al cuore in dotazione;6.850",
+        "null": [
+            "00 €;forno_elettrico_a_5_teglie_autopulente_con_sonde_al_cuore_in_dotazione"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "354;fatt;Cappa sopraforno Alcapone a filtri interni;1.980",
+        "null": [
+            "00 €;cappa_sopraforno_alcapone_a_filtri_interni"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "355;fatt;Fontana a leva normale;200",
+        "null": [
+            "00 €;fontana_a_leva_normale"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "356;fatt;Lavello a 2 vasche con gocciolatoio aperto e ripiano;820",
+        "null": [
+            "00 €;lavello_a_2_vasche_con_gocciolatoio_aperto_e_ripiano"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "357;fatt;Base frigo a 3 porte completa di motore a bordo e alzatina;1.600",
+        "null": [
+            "00 €;base_frigo_a_3_porte_completa_di_motore_a_bordo_e_alzatina"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "358;fatt;Base per congelatore a 3 porte con alzatina in dotazione;1.900",
+        "null": [
+            "00 €;base_per_congelatore_a_3_porte_con_alzatina_in_dotazione"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "359;fatt;Tavolo inox aperto con ripiano ed alzatina;400",
+        "null": [
+            "00 €;tavolo_inox_aperto_con_ripiano_ed_alzatina"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "360;fatt;Lampade calde colore luce rossa;200",
+        "null": [
+            "00 €;lampade_calde_colore_luce_rossa"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "361;fatt;Microonde nero 31 LT;350",
+        "null": [
+            "00 €;microonde_nero_31_lt"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "362;fatt;Cappottina P100 70 x 75 x 180;4.600",
+        "null": [
+            "00 €;cappottina_p100_70_x_75_x_180"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "363;fatt;Lavello a doppia vasca completo di gocciolatoio a sbalzo aperto 160 x 70 x 85;1.150",
+        "null": [
+            "00 €;lavello_a_doppia_vasca_completo_di_gocciolatoio_a_sbalzo_aperto_160_x_70_x_85"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "364;fatt;Tavolo inox con foro sbarazzo aperto 70 x 70 x 85;600",
+        "null": [
+            "00 €;tavolo_inox_con_foro_sbarazzo_aperto_70_x_70_x_85"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "365;fatt;Doccetta alta SAMMIC ;400",
+        "null": [
+            "00 €;doccetta_alta_sammic"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "366;fatt;Tavolo inox aperto con ripiano 150 x 70 x 85 no alzatina;400",
+        "null": [
+            "00 €;tavolo_inox_aperto_con_ripiano_150_x_70_x_85_no_alzatina"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "367;fatt;Armadio frigo a 2 porte 1.400 lt 80 x 140 x 210;1.950",
+        "null": [
+            "00 €;armadio_frigo_a_2_porte_1_400_lt_80_x_140_x_210"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "368;fatt;Vetrina bibita 1 porta colore nero 60 x 60 x 185;1.100",
+        "null": [
+            "00 €;vetrina_bibita_1_porta_colore_nero_60_x_60_x_185"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": ";;;;"
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": ";;;;"
     }
 ]
