@@ -444,36 +444,6 @@
         ]
     },
     {
-        "ID;settore;prodotto;prezzo;immagine": "51;ristorante;Attrezzatura gelateria;9.000",
-        "null": [
-            "00 €;attrezzatura_gelateria"
-        ]
-    },
-    {
-        "ID;settore;prodotto;prezzo;immagine": "52;ristorante;Attrezzatura salumeria;6.399",
-        "null": [
-            "00 €;attrezzatura_salumeria"
-        ]
-    },
-    {
-        "ID;settore;prodotto;prezzo;immagine": "53;ristorante;Attrezzatura pizzeria;3.950",
-        "null": [
-            "00 €;attrezzatura_pizzeria"
-        ]
-    },
-    {
-        "ID;settore;prodotto;prezzo;immagine": "54;ristorante;Attrezzatura bar;14.999",
-        "null": [
-            "00 €;attrezzatura_bar"
-        ]
-    },
-    {
-        "ID;settore;prodotto;prezzo;immagine": "55;ristorante;Attrezzatura cucina per pub o ristorante;5.890",
-        "null": [
-            "00 €;attrezzatura_cucina_per_pub_o_ristorante"
-        ]
-    },
-    {
         "ID;settore;prodotto;prezzo;immagine": "56;ristorante;Girarrosto elettrico 36 polli;3.200",
         "null": [
             "00 €;girarrosto_elettrico_36_polli"
