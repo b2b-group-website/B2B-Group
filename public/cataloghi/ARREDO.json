@@ -352,5 +352,35 @@
         "null": [
             "00 €;composizione_home_seven"
         ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "215;arredo;Divanetto in ecopelle;870",
+        "null": [
+            "00 €;divanetto_in_ecopelle"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "216;arredo;Tavolinetto basso;370",
+        "null": [
+            "00 €;tavolinetto_basso"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "217;arredo;Sedia in plastica dura;60",
+        "null": [
+            "00 €;sedia_in_plastica_dura"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "218;arredo;Tavolo con piede unico;290",
+        "null": [
+            "00 €;tavolo_con_piede_unico"
+        ]
+    },
+    {
+        "ID;settore;prodotto;prezzo;immagine": "219;arredo;Retro banco bar 4x6 metri;3900",
+        "null": [
+            "00 €;retro_banco_bar_4x6_metri"
+        ]
     }
 ]
