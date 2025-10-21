@@ -31,7 +31,7 @@ const Header = ({ onEcommerce }: { onEcommerce?: () => void }) => {
               <img 
                 src="/images/logo/fortuna%20x%20b2bgroup.svg" 
                 alt="B2B Group Logo" 
-                className="w-32 h-32 object-contain"
+                className="w-20 h-20 object-contain"
               />
             </div>
           </div>
@@ -584,24 +584,6 @@ const PartnerSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 border border-primary/20">
-            <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
-                  <Users className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-left">
-                  <h3 className="text-xl font-black text-dark-gray">Diventa nostro partner</h3>
-                  <p className="text-dark-gray/70 font-medium">Unisciti alla nostra rete di eccellenza</p>
-                </div>
-              </div>
-              <button className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
-                Contattaci
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -815,12 +797,17 @@ const ContattiSection = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
           <div className="flex flex-col gap-8 justify-center">
             <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
               <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Mail className="w-10 h-10 text-white" />
+                <MapPin className="w-10 h-10 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-black text-white mb-2">Email</h3>
-                <p className="text-white/80 text-lg font-semibold">info@b2b-group.it</p>
-                <p className="text-white/60 font-medium mt-1">Risposta garantita entro 2 ore</p>
+                <h3 className="text-2xl font-black text-white mb-2">Sede Operativa</h3>
+                <p className="text-white/80 text-lg font-semibold">Via Bellavista 5<br/>Castelnuovo di Porto (RM)</p>
+                <a 
+                  href="https://www.google.com/maps?q=Via+Bellavista+5,+Castelnuovo+di+Porto+(RM)" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-secondary underline text-sm font-semibold"
+                >Visualizza su Google Maps →</a>
               </div>
             </div>
             <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
@@ -828,19 +815,57 @@ const ContattiSection = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
                 <MapPin className="w-10 h-10 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-black text-white mb-2">Sede principale</h3>
-                <p className="text-white/80 text-lg font-semibold">
-                  Circonvallazione Clodia, 163/167<br />
-                  00195 Roma – Italia
-                </p>
-                <p className="text-white/60 font-medium mt-1">Showroom aperto su appuntamento</p>
+                <h3 className="text-2xl font-black text-white mb-2">Sede Legale</h3>
+                <p className="text-white/80 text-lg font-semibold">Via San Lazzaro<br/>Frignano (CE)</p>
+                <a 
+                  href="https://www.google.com/maps?q=Via+San+Lazzaro,+Frignano+(CE)" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-secondary underline text-sm font-semibold"
+                >Visualizza su Google Maps →</a>
+              </div>
+            </div>
+            <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Phone className="w-10 h-10 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-black text-white mb-2">Telefono</h3>
+                <p className="text-white/80 text-lg font-semibold">+39 081 1893 9337</p>
+                <p className="text-white/60 font-medium mt-1">Chiamate urgenti 24/7</p>
+              </div>
+            </div>
+            <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Mail className="w-10 h-10 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-black text-white mb-2">Email</h3>
+                <p className="text-white/80 text-lg font-semibold">info@fortunaedilizia.it</p>
+                <p className="text-white/60 font-medium mt-1">Risposta entro 2 ore</p>
+                <a 
+                  href="mailto:info@fortunaedilizia.it"
+                  className="mt-4 inline-block bg-secondary text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 hover:bg-secondary/90 transition-transform duration-300 text-lg"
+                  style={{ background: 'linear-gradient(90deg, #FF8600 0%, #FFBB36 100%)' }}
+                >
+                  Scrivici una mail!
+                </a>
+              </div>
+            </div>
+            <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Calendar className="w-10 h-10 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-black text-white mb-2">Orari</h3>
+                <div className="text-white/80 text-lg font-semibold">Lun–Ven 08:00–18:00<br/>Sab 09:00–13:00<br/>Dom chiuso</div>
               </div>
             </div>
           </div>
           {/* Colonna destra: benefit */}
           <div className="flex flex-col justify-center h-full">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-10 border-2 border-secondary/40 shadow-xl">
-              <h3 className="text-2xl font-black text-white mb-6 text-center">Perché scegliere B2B Group?</h3>
+              <h3 className="text-2xl font-black text-white mb-6 text-center">Perché scegliere B2B Group by Fortuna SRLS?</h3>
               <div className="space-y-4">
                 {[
                   "Consulenza gratuita e personalizzata",
