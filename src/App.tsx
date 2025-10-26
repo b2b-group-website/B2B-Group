@@ -916,13 +916,27 @@ const Footer = () => {
 // Utility per trovare l'immagine giusta tra tutte le sottocartelle e formati
 const findProductImage = (imgName: string, catalogo: string) => {
   if (!imgName) return undefined;
-  let subfolder = '';
-  if (catalogo === 'informatica') subfolder = 'informatica';
-  else if (catalogo === 'arredo') subfolder = 'arredo';
-  else if (catalogo === 'alimentare') subfolder = 'arredo'; // I nostri prodotti spostati sono nella cartella arredo
-  else if (catalogo === 'ufficio') subfolder = 'ufficio';
+  let subfolders = [];
+  
+  if (catalogo === 'informatica') subfolders = ['informatica'];
+  else if (catalogo === 'arredo') subfolders = ['arredo'];
+  else if (catalogo === 'alimentare') {
+    // Per alimentare, controlla prima arredo (per i 5 prodotti spostati) poi impiantistica (per gli altri)
+    subfolders = ['arredo', 'impiantistica'];
+  }
+  else if (catalogo === 'ufficio') subfolders = ['ufficio'];
+  
   const extensions = ['.webp', '.jfif', '.jpg', '.jpeg', '.png'];
-  return extensions.map(ext => `/images/ecommerce/${subfolder}/${imgName}${ext}`);
+  const paths = [];
+  
+  // Genera tutti i possibili percorsi per tutte le cartelle e estensioni
+  subfolders.forEach(subfolder => {
+    extensions.forEach(ext => {
+      paths.push(`/images/ecommerce/${subfolder}/${imgName}${ext}`);
+    });
+  });
+  
+  return paths;
 };
 
 const parseCatalogProduct = (item: any, catalogo?: string): any => {
