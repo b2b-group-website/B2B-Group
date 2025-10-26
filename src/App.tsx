@@ -270,7 +270,7 @@ const SettoriPrincipali = () => {
     },
     {
       icon: Layers, // Puoi scegliere un'icona più adatta se vuoi
-      title: "Attrezzature industriali HO.RE.CA.",
+      title: "Horeca",
       description: "Forniture di attrezzature industriali HO.RE.CA. per industrie alimentari e non: linee di produzione, confezionamento, automazione, impianti su misura",
       color: "from-green-700 to-lime-500",
       bgColor: "from-green-100/50 to-lime-100/50",
@@ -602,7 +602,7 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
       color: "from-primary to-blue-600"
     },
     {
-      title: "Arredo ufficio",
+      title: "Arredamento",
       description: "Mobili, scrivanie regolabili, sedute ergonomiche e design per ambienti di lavoro moderni.",
       icon: Chair,
       image: "/images/arredo-ufficio.jpg",
@@ -612,7 +612,7 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
       color: "from-secondary to-orange-600"
     },
     {
-      title: "Forniture da ufficio",
+      title: "Office",
       description: "Carta, cancelleria, toner, archiviazione e materiali essenziali per l'ufficio.",
       icon: FileText,
       image: "/images/forniture-e-materiali.jpg",
@@ -624,7 +624,7 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
       comingSoonText: 'In arrivo a breve!',
     },
     {
-      title: "Attrezzature industriali HO.RE.CA.",
+      title: "Horeca",
       description: "Macchinari, impianti, automazione e soluzioni su misura per l'industria alimentare.",
       icon: Layers, // Puoi scegliere un'icona più adatta se vuoi
       image: "/images/3094495_banco-vendita-gastronomia-degustazione-arredo-negozio-industriale-vetrina-refrigerata.jpg",
@@ -919,7 +919,7 @@ const findProductImage = (imgName: string, catalogo: string) => {
   let subfolder = '';
   if (catalogo === 'informatica') subfolder = 'informatica';
   else if (catalogo === 'arredo') subfolder = 'arredo';
-  else if (catalogo === 'alimentare') subfolder = 'impiantistica';
+  else if (catalogo === 'alimentare') subfolder = 'arredo'; // I nostri prodotti spostati sono nella cartella arredo
   else if (catalogo === 'ufficio') subfolder = 'ufficio';
   const extensions = ['.webp', '.jfif', '.jpg', '.jpeg', '.png'];
   return extensions.map(ext => `/images/ecommerce/${subfolder}/${imgName}${ext}`);
@@ -986,6 +986,21 @@ const parseCatalogProduct = (item: any, catalogo?: string): any => {
       }
     }
     if (!nome || !immagine) return null;
+    return {
+      id: nome + immagine,
+      nome,
+      prezzo,
+      immagine
+    };
+  }
+  if (catalogo === 'alimentare') {
+    // Parsing specifico per catalogo_ecommerce_b2b_alimentare.json
+    const nome = item.nome || '';
+    const prezzoStr = item.prezzo || '';
+    const prezzo = parseFloat(prezzoStr.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
+    const immagine = item.immagine || '';
+    
+    if (!nome || prezzo <= 0) return null;
     return {
       id: nome + immagine,
       nome,
@@ -1065,7 +1080,7 @@ const EcommercePage = ({ onBack }: { onBack: () => void }) => {
     },
     {
       key: 'arredo',
-      title: 'Arredo ufficio',
+      title: 'Arredamento',
       description: "Mobili, scrivanie regolabili, sedute ergonomiche e design per ambienti di lavoro moderni.",
       image: '/images/arredo-ufficio.jpg',
       accentColor: 'from-secondary to-orange-600',
@@ -1073,7 +1088,7 @@ const EcommercePage = ({ onBack }: { onBack: () => void }) => {
     },
     {
       key: 'forniture',
-      title: 'Forniture da ufficio',
+      title: 'Office',
       description: "Carta, cancelleria, toner, archiviazione e materiali essenziali per l'ufficio.",
       image: '/images/forniture-e-materiali.jpg',
       accentColor: 'from-tertiary-red to-red-600',
@@ -1081,7 +1096,7 @@ const EcommercePage = ({ onBack }: { onBack: () => void }) => {
     },
     {
       key: 'alimentare',
-      title: 'Attrezzature industriali HO.RE.CA.',
+      title: 'Horeca',
       description: "Macchinari, impianti, automazione e soluzioni su misura per l'industria alimentare.",
       image: '/images/3094495_banco-vendita-gastronomia-degustazione-arredo-negozio-industriale-vetrina-refrigerata.jpg',
       accentColor: 'from-green-700 to-lime-500',
@@ -1148,8 +1163,8 @@ const EcommercePage = ({ onBack }: { onBack: () => void }) => {
         <div className="mb-6 flex gap-4">
           <button onClick={() => setCatalogo('informatica')} className={`px-6 py-2 rounded-full font-bold ${catalogo==='informatica' ? 'bg-primary text-white' : 'bg-white border'}`}>Informatica</button>
           <button onClick={() => setCatalogo('arredo')} className={`px-6 py-2 rounded-full font-bold ${catalogo==='arredo' ? 'bg-primary text-white' : 'bg-white border'}`}>Arredo</button>
-          <button onClick={() => setCatalogo('alimentare')} className={`px-6 py-2 rounded-full font-bold ${catalogo==='alimentare' ? 'bg-primary text-white' : 'bg-white border'}`}>Attrezzature industriali HO.RE.CA.</button>
-          <button onClick={() => setCatalogo('ufficio')} className={`px-6 py-2 rounded-full font-bold ${catalogo==='ufficio' ? 'bg-primary text-white' : 'bg-white border'}`}>Forniture da ufficio</button>
+          <button onClick={() => setCatalogo('alimentare')} className={`px-6 py-2 rounded-full font-bold ${catalogo==='alimentare' ? 'bg-primary text-white' : 'bg-white border'}`}>Horeca</button>
+          <button onClick={() => setCatalogo('ufficio')} className={`px-6 py-2 rounded-full font-bold ${catalogo==='ufficio' ? 'bg-primary text-white' : 'bg-white border'}`}>Office</button>
         </div>
         {catalogo === 'arredo'
           ? <ArredoGrid prodotti={prodotti.filter(p => p && p.nome && p.prezzo > 0)} />

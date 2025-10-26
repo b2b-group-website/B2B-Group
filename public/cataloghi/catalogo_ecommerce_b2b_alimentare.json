@@ -1,5 +1,35 @@
 [
     {
+        "nome": "Divanetto in ecopelle",
+        "descrizione": "Divanetto elegante in ecopelle per ambienti moderni",
+        "prezzo": "870,00 €",
+        "immagine": "divanetto_in_ecopelle"
+    },
+    {
+        "nome": "Tavolinetto basso",
+        "descrizione": "Tavolinetto basso per soggiorno e ambienti relax",
+        "prezzo": "370,00 €",
+        "immagine": "tavolinetto_basso"
+    },
+    {
+        "nome": "Sedia in plastica dura",
+        "descrizione": "Sedia resistente in plastica dura per esterni",
+        "prezzo": "60,00 €",
+        "immagine": "sedia_in_plastica_dura"
+    },
+    {
+        "nome": "Tavolo con piede unico",
+        "descrizione": "Tavolo moderno con design a piede unico",
+        "prezzo": "290,00 €",
+        "immagine": "tavolo_con_piede_unico"
+    },
+    {
+        "nome": "Retro banco bar 4x6 metri",
+        "descrizione": "Retro banco bar professionale 4x6 metri",
+        "prezzo": "3.900,00 €",
+        "immagine": "retro_banco_bar_4x6_metri"
+    },
+    {
         "nome": "Friggitrice a 2 vasche gas",
         "descrizione": "70 x 80 x 85 17+17 LT",
         "prezzo": "3.500,00 €",
