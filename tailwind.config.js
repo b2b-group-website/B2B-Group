@@ -4,11 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'cream': '#FFF8F1',
-        'dark-gray': '#353535',
+        'cream': '#F8FAFC',
+        'dark-gray': '#0F172A',
         'primary': '#107A72',
+        'primary-dark': '#0D625A',
         'secondary': '#F7A432',
-        'tertiary-dark': '#2E3047',
+        'tertiary-dark': '#1E293B',
         'tertiary-red': '#E84855',
       },
       fontFamily: {
@@ -17,7 +18,9 @@ export default {
       fontWeight: {
         'light': '300',
         'normal': '400',
+        'medium': '500',
         'semibold': '600',
+        'bold': '700',
         'black': '900',
       },
     },

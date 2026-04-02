@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Monitor, PenTool, Armchair as Chair, Layers, Ear, Lightbulb, Headphones, Laptop, FileText, Building, Video, Mail, MapPin, Phone, Menu, X, ChevronRight, Users, Shield, Zap, Star, Award, TrendingUp, CheckCircle, ArrowRight, Play, Lock, Eye, EyeOff, Save, Download, Bold, Italic, List, ListOrdered, Quote, Code, Link, Image, Undo, Redo, Calendar, User, Briefcase, Globe, Hash, CreditCard, FileText as FileTextIcon } from 'lucide-react';
+import { Monitor, PenTool, Armchair as Chair, Layers, Ear, Lightbulb, Headphones, Laptop, FileText, Building, Video, Mail, MapPin, Phone, Menu, X, Users, Shield, Zap, Star, Award, TrendingUp, CheckCircle, ArrowRight, Play, Lock, Eye, EyeOff, Save, Download, Bold, Italic, List, ListOrdered, Quote, Code, Link, Image, Undo, Redo, Calendar, User, Briefcase, Globe, Hash, CreditCard, FileText as FileTextIcon } from 'lucide-react';
 import ProductPreviewFan, { ProductCategory } from "./ProductPreviewFan";
 
 const Header = ({ onEcommerce }: { onEcommerce?: () => void }) => {
@@ -8,7 +8,7 @@ const Header = ({ onEcommerce }: { onEcommerce?: () => void }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -17,50 +17,44 @@ const Header = ({ onEcommerce }: { onEcommerce?: () => void }) => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
     }
     setIsMenuOpen(false);
   };
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-lg shadow-2xl border-b border-primary/20' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-6 py-4">
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white border-b border-gray-200 py-4 shadow-sm' : 'bg-white/95 backdrop-blur-sm border-b border-gray-100 py-5'}`}>
+      <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="relative">
-              <img 
-                src="/images/logo/fortuna%20x%20b2bgroup.svg" 
-                alt="B2B Group Logo" 
-                className="w-20 h-20 object-contain"
-              />
-            </div>
+          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+            <img 
+              src="/images/logo/logodef.svg" 
+              alt="B2B Group Logo" 
+              className="h-8 md:h-12 w-auto object-contain"
+            />
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <button onClick={() => scrollToSection('settori')} className="relative text-dark-gray hover:text-primary transition-all duration-300 font-semibold group">
+            <button onClick={() => scrollToSection('settori')} className="text-xs font-bold text-dark-gray hover:text-primary transition-colors tracking-widest uppercase">
               Settori
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
             </button>
-            <button onClick={() => scrollToSection('approccio')} className="relative text-dark-gray hover:text-primary transition-all duration-300 font-semibold group">
-              Approccio
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+            <button onClick={() => scrollToSection('approccio')} className="text-xs font-bold text-dark-gray hover:text-primary transition-colors tracking-widest uppercase">
+              Metodologia
             </button>
-            <button onClick={() => scrollToSection('catalogo')} className="relative text-dark-gray hover:text-primary transition-all duration-300 font-semibold group">
+            <button onClick={() => scrollToSection('catalogo')} className="text-xs font-bold text-dark-gray hover:text-primary transition-colors tracking-widest uppercase">
               Catalogo
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
             </button>
-            <button onClick={onEcommerce} className="relative text-dark-gray hover:text-primary transition-all duration-300 font-semibold group">
+            <button onClick={onEcommerce} className="text-xs font-bold text-dark-gray hover:text-primary transition-colors tracking-widest uppercase flex items-center gap-2">
               Ecommerce
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
             </button>
-            <button onClick={() => scrollToSection('contatti')} className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300 font-semibold relative overflow-hidden group">
-              <span className="relative z-10">Contatti</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <button onClick={() => scrollToSection('contatti')} className="bg-dark-gray text-white px-6 py-2 rounded-[2px] border border-dark-gray hover:bg-transparent hover:text-dark-gray transition-colors font-bold text-xs uppercase tracking-widest">
+              Contattaci
             </button>
           </nav>
 
           <button 
-            className="md:hidden relative z-10"
+            className="md:hidden relative z-10 text-dark-gray p-2 hover:bg-gray-50 rounded-[2px] transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -68,19 +62,19 @@ const Header = ({ onEcommerce }: { onEcommerce?: () => void }) => {
         </div>
 
         {isMenuOpen && (
-          <nav className="md:hidden mt-6 pb-6 border-t border-primary/20 pt-6 bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl">
-            <div className="flex flex-col space-y-4">
-              <button onClick={() => scrollToSection('settori')} className="text-left text-dark-gray hover:text-primary transition-colors font-semibold">
+          <nav className="md:hidden mt-5 pb-5 border-t border-gray-100 pt-5 bg-white shadow-xl absolute left-0 right-0 px-6 top-full">
+            <div className="flex flex-col space-y-1">
+              <button onClick={() => scrollToSection('settori')} className="text-left px-2 py-3 text-xs text-dark-gray hover:text-primary font-bold uppercase tracking-widest transition-colors border-b border-gray-50">
                 Settori
               </button>
-              <button onClick={() => scrollToSection('approccio')} className="text-left text-dark-gray hover:text-primary transition-colors font-semibold">
-                Approccio
+              <button onClick={() => scrollToSection('approccio')} className="text-left px-2 py-3 text-xs text-dark-gray hover:text-primary font-bold uppercase tracking-widest transition-colors border-b border-gray-50">
+                Metodologia
               </button>
-              <button onClick={() => scrollToSection('catalogo')} className="text-left text-dark-gray hover:text-primary transition-colors font-semibold">
+              <button onClick={() => scrollToSection('catalogo')} className="text-left px-2 py-3 text-xs text-dark-gray hover:text-primary font-bold uppercase tracking-widest transition-colors border-b border-gray-50">
                 Catalogo
               </button>
-              <button onClick={() => scrollToSection('contatti')} className="text-left bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full hover:shadow-lg transition-all duration-300 w-fit font-semibold">
-                Contatti
+              <button onClick={() => scrollToSection('contatti')} className="text-center px-2 py-3 text-xs bg-dark-gray text-white font-bold uppercase tracking-widest mt-4 rounded-[2px]">
+                Contattaci
               </button>
             </div>
           </nav>
@@ -91,147 +85,97 @@ const Header = ({ onEcommerce }: { onEcommerce?: () => void }) => {
 };
 
 const HeroSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [
-    { icon: Monitor, color: 'from-primary to-blue-600' },
-    { icon: Chair, color: 'from-secondary to-orange-600' },
-    { icon: FileText, color: 'from-tertiary-red to-red-600' },
-    { icon: Layers, color: 'from-purple-600 to-pink-600' }
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
     }
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-cream via-white to-cream overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-tertiary-red/20 to-primary/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-secondary/10 to-tertiary-red/10 rounded-full blur-2xl animate-pulse delay-2000"></div>
-      </div>
+    <section className="relative min-h-[90vh] bg-cream flex items-center pt-24 pb-16 overflow-hidden">
+      <div className="absolute inset-0 bg-grid-pattern opacity-60"></div>
 
-      <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <div className="space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-secondary/10 px-6 py-3 rounded-full border border-primary/20">
-                <Star className="w-5 h-5 text-secondary" />
-                <span className="text-primary font-semibold">Soluzioni Premium per Imprese</span>
-              </div>
-              
-              <h1 className="text-5xl md:text-7xl font-black text-dark-gray leading-tight">
-                <span className="bg-gradient-to-r from-primary via-secondary to-tertiary-red bg-clip-text text-transparent">
-                  Soluzioni complete
-                </span>
-                <br />
-                <span className="text-dark-gray">per l'impresa</span>
-                <br />
-                <span className="bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-                  moderna
-                </span>
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-dark-gray/80 font-light leading-relaxed max-w-2xl">
-                <span className="font-semibold text-primary">Informatica</span>, 
-                <span className="font-semibold text-secondary"> arredo</span> e 
-                <span className="font-semibold text-tertiary-red"> materiali per impresa</span> — 
-                forniture professionali per imprese di ogni dimensione.
-              </p>
-            </div>
+      <div className="relative z-10 container mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+        <div className="space-y-10">
+          <div className="inline-flex items-center space-x-3 bg-white border border-gray-200 px-4 py-2 shadow-sm rounded-[2px]">
+            <div className="w-2 h-2 bg-primary rounded-[1px]"></div>
+            <span className="text-dark-gray text-xs font-bold uppercase tracking-widest">Soluzioni Enterprise B2B</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-black text-dark-gray leading-[1.05] tracking-tight">
+            Asset e <br />
+            Forniture per <br />
+            <span className="text-primary">l'Impresa.</span>
+          </h1>
+          
+          <p className="text-lg md:text-xl text-gray-600 font-medium leading-relaxed max-w-lg border-l-2 border-primary pl-6">
+            Infrastrutture IT, arredi direzionali e impianti industriali integrati. Un unico partner affidabile per l'espansione e l'efficienza aziendale.
+          </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button 
-                onClick={() => scrollToSection('contatti')}
-                className="group bg-gradient-to-r from-primary to-secondary text-white px-10 py-5 rounded-2xl text-lg font-bold hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center">
-                  Contattaci Ora
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
-            </div>
-
-            <div className="flex items-center space-x-8 pt-8">
-              <div className="text-center">
-                <div className="text-3xl font-black text-primary">500+</div>
-                <div className="text-sm text-dark-gray/60 font-semibold">Clienti Soddisfatti</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-black text-secondary">15+</div>
-                <div className="text-sm text-dark-gray/60 font-semibold">Anni di Esperienza</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-black text-tertiary-red">24/7</div>
-                <div className="text-sm text-dark-gray/60 font-semibold">Supporto Tecnico</div>
-              </div>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <button 
+              onClick={() => scrollToSection('contatti')}
+              className="bg-primary text-white border border-primary px-8 py-4 text-xs font-bold uppercase tracking-widest shadow-sm hover:bg-white hover:text-primary transition-colors flex items-center justify-center group rounded-[2px]"
+            >
+              Richiedi Consulenza
+              <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button 
+              onClick={() => scrollToSection('catalogo')}
+              className="bg-white border border-gray-300 text-dark-gray px-8 py-4 text-xs font-bold uppercase tracking-widest shadow-sm hover:bg-gray-50 transition-colors flex items-center justify-center rounded-[2px] hover:border-dark-gray"
+            >
+              Esplora Settori
+            </button>
           </div>
 
-          <div className="relative">
-            <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-primary/10">
-              {/* Animated Cards */}
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                {slides.map((slide, index) => (
-                  <div 
-                    key={index}
-                    className={`relative rounded-2xl p-6 transition-all duration-500 transform ${
-                      currentSlide === index 
-                        ? 'scale-110 shadow-2xl z-10' 
-                        : 'scale-100 shadow-lg hover:scale-105'
-                    }`}
-                  >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${slide.color} rounded-2xl opacity-10`}></div>
-                    <div className="relative z-10 flex items-center justify-center">
-                      <slide.icon className={`w-12 h-12 ${
-                        currentSlide === index ? 'text-white' : 'text-primary'
-                      } transition-colors duration-500`} />
-                    </div>
-                    {currentSlide === index && (
-                      <div className={`absolute inset-0 bg-gradient-to-br ${slide.color} rounded-2xl animate-pulse`}></div>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              <div className="text-center space-y-4">
-                <h3 className="text-2xl font-black text-dark-gray">Tutto per la tua impresa</h3>
-                <p className="text-dark-gray/70 font-semibold">in un'unica soluzione professionale</p>
-                
-                <div className="flex justify-center space-x-2 pt-4">
-                  {slides.map((_, index) => (
-                    <div 
-                      key={index}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        currentSlide === index 
-                          ? 'bg-gradient-to-r from-primary to-secondary scale-125' 
-                          : 'bg-dark-gray/20'
-                      }`}
-                    ></div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-secondary to-tertiary-red rounded-full animate-bounce"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-primary to-secondary rounded-full animate-bounce delay-1000"></div>
+          <div className="grid grid-cols-3 gap-6 pt-10 border-t border-gray-200">
+            <div>
+              <div className="text-3xl font-black text-dark-gray tracking-tight">500<span className="text-primary">+</span></div>
+              <div className="text-xs text-secondary font-bold mt-2 uppercase tracking-wider">Clienti</div>
             </div>
+            <div>
+              <div className="text-3xl font-black text-dark-gray tracking-tight">15<span className="text-primary">+</span></div>
+              <div className="text-xs text-secondary font-bold mt-2 uppercase tracking-wider">Anni</div>
+            </div>
+            <div>
+              <div className="text-3xl font-black text-dark-gray tracking-tight">24/7</div>
+              <div className="text-xs text-secondary font-bold mt-2 uppercase tracking-wider">Supporto</div>
+            </div>
+          </div>
+        </div>
 
-            {/* Background Decorative Elements */}
-            <div className="absolute -z-10 top-10 right-10 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-2xl"></div>
-            <div className="absolute -z-10 bottom-10 left-10 w-24 h-24 bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-2xl"></div>
+        <div className="w-full relative min-h-[500px]">
+          <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-[2px] bg-gray-200 border border-gray-200 rounded-[2px] overflow-hidden shadow-lg p-[2px]">
+            <div className="bg-white p-8 flex flex-col justify-between group hover:bg-gray-50 transition-colors relative overflow-hidden">
+              <Monitor className="w-8 h-8 text-primary mb-6" />
+              <div>
+                <h3 className="font-bold text-dark-gray text-xl mb-1 uppercase tracking-tight">Informatica</h3>
+                <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">Server & IT</p>
+              </div>
+            </div>
+            <div className="bg-dark-gray p-8 flex flex-col justify-between group hover:bg-[#15203b] transition-colors relative overflow-hidden">
+              <Layers className="w-8 h-8 text-secondary mb-6 relative z-10" />
+              <div className="relative z-10">
+                <h3 className="font-bold text-white text-xl mb-1 uppercase tracking-tight">Horeca</h3>
+                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider">Impianti & Auto</p>
+              </div>
+            </div>
+            <div className="bg-primary p-8 flex flex-col justify-between group hover:bg-primary-dark transition-colors relative overflow-hidden">
+               <Chair className="w-8 h-8 text-white mb-6 relative z-10" />
+               <div className="relative z-10">
+                 <h3 className="font-bold text-white text-xl mb-1 uppercase tracking-tight">Arredo</h3>
+                 <p className="text-xs text-white/80 font-semibold uppercase tracking-wider">Uffici & Design</p>
+               </div>
+            </div>
+            <div className="bg-white p-8 flex flex-col justify-between group hover:bg-gray-50 transition-colors relative overflow-hidden">
+               <FileText className="w-8 h-8 text-primary mb-6" />
+               <div>
+                 <h3 className="font-bold text-dark-gray text-xl mb-1 uppercase tracking-tight">Office</h3>
+                 <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">Consumabili</p>
+               </div>
+            </div>
           </div>
         </div>
       </div>
@@ -243,116 +187,76 @@ const SettoriPrincipali = () => {
   const settori = [
     {
       icon: Monitor,
-      title: "Informatica professionale",
-      description: "PC, server, reti, software, periferiche di ultima generazione",
-      color: "from-primary to-blue-600",
-      bgColor: "from-primary/10 to-blue-100/50",
-      stats: "2000+ Dispositivi",
-      features: ["Hardware Enterprise", "Software Licensing", "Cloud Solutions", "Cybersecurity"]
-    },
-    {
-      icon: PenTool,
-      title: "Forniture per impresa",
-      description: "Carta, toner, accessori, cancelleria di qualità premium",
-      color: "from-secondary to-orange-600",
-      bgColor: "from-secondary/10 to-orange-100/50",
-      stats: "5000+ Prodotti",
-      features: ["Materiali Premium", "Consegna Rapida", "Stock Garantito", "Eco-Friendly"]
+      title: "Informatica Professional",
+      description: "Hardware enterprise, server, reti, licensing e soluzioni cloud integrate.",
+      features: ["Consulenza IT", "Fornitura Client", "Networking", "Software"],
     },
     {
       icon: Chair,
-      title: "Arredo per impresa",
-      description: "Scrivanie, sedute ergonomiche, scaffalature design",
-      color: "from-tertiary-red to-red-600",
-      bgColor: "from-tertiary-red/10 to-red-100/50",
-      stats: "1000+ Soluzioni",
-      features: ["Design Ergonomico", "Materiali Premium", "Personalizzazione", "Garanzia Estesa"]
+      title: "Arredo Direzionale",
+      description: "Progettazione e fornitura di arredi operativi ed ergonomici su misura per uffici e sale riunioni.",
+      features: ["Ergonomia", "Materiali Premium", "Uffici Chiavi in Mano", "Design"],
     },
     {
-      icon: Layers, // Puoi scegliere un'icona più adatta se vuoi
-      title: "Horeca",
-      description: "Forniture di attrezzature industriali HO.RE.CA. per industrie alimentari e non: linee di produzione, confezionamento, automazione, impianti su misura",
-      color: "from-green-700 to-lime-500",
-      bgColor: "from-green-100/50 to-lime-100/50",
-      stats: "500+ Macchinari",
-      features: [
-        "Impianti alimentari",
-        "Linee di confezionamento",
-        "Automazione industriale",
-        "Soluzioni personalizzate"
-      ]
+      icon: Layers,
+      title: "Forniture Horeca",
+      description: "Impianti alimentari, macchinari d'automazione e linee produttive ad alte prestazioni.",
+      features: ["Automazione", "Linee di Confezionamento", "Attrezzature Industriali", "Progetti Custom"],
+    },
+    {
+      icon: FileText,
+      title: "Consumabili Corporate",
+      description: "Approvvigionamento di materiale di cancelleria, consumabili stampa e accessori da ufficio.",
+      features: ["Stock Garantito", "Consegne Programmate", "Materiali Certificati", "Eco-Friendly"],
     },
   ];
 
   return (
-    <section id="settori" className="py-24 bg-gradient-to-br from-white via-cream to-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23107A72' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}></div>
-      </div>
-
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-secondary/10 px-6 py-3 rounded-full border border-primary/20 mb-6">
-            <Award className="w-5 h-5 text-primary" />
-            <span className="text-primary font-semibold">I Nostri Settori di Eccellenza</span>
+    <section id="settori" className="py-24 bg-white relative border-t border-gray-200">
+      <div className="container mx-auto px-6">
+        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div>
+            <div className="inline-flex items-center space-x-3 bg-gray-50 border border-gray-200 px-4 py-2 shadow-sm rounded-[2px] mb-6">
+              <Layers className="w-4 h-4 text-primary" />
+              <span className="text-dark-gray text-xs font-bold uppercase tracking-widest">Aree di Intervento</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-dark-gray tracking-tight uppercase">
+              I Nostri <span className="text-primary">Settori</span>
+            </h2>
           </div>
-          
-          <h2 className="text-4xl md:text-6xl font-black text-dark-gray mb-6">
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Settori Principali
-            </span>
-          </h2>
-          <p className="text-xl text-dark-gray/70 font-light max-w-3xl mx-auto leading-relaxed">
-            Offriamo soluzioni complete e innovative per ogni esigenza imprenditoriale, 
-            dalla tecnologia all'arredo, con un approccio integrato e personalizzato
+          <p className="text-lg text-gray-500 font-medium max-w-xl leading-relaxed border-l-2 border-gray-200 pl-6">
+            Interveniamo a più livelli per fornire ad ogni impresa gli strumenti operativi e gli spazi essenziali alla propria espansione.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-[2px] bg-gray-200 border border-gray-200 rounded-[2px] overflow-hidden">
           {settori.map((settore, index) => (
             <div 
               key={index}
-              className="group relative bg-white rounded-3xl p-8 border border-primary/10 hover:border-transparent hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+              className="bg-white p-10 hover:bg-gray-50 transition-colors group relative"
             >
-              {/* Background Gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${settore.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-              
-              {/* Content */}
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-6">
-                  <div className={`w-20 h-20 bg-gradient-to-br ${settore.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-                    <settore.icon className="w-10 h-10 text-white" />
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
-                      {settore.stats}
-                    </div>
-                  </div>
+              <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
+                <settore.icon className="w-32 h-32 text-dark-gray" />
+              </div>
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="mb-8">
+                  <settore.icon className="w-10 h-10 text-primary mb-6" />
+                  <h3 className="text-2xl font-black text-dark-gray mb-3 uppercase tracking-tight group-hover:text-primary transition-colors">
+                    {settore.title}
+                  </h3>
+                  <p className="text-gray-600 font-medium leading-relaxed">
+                    {settore.description}
+                  </p>
                 </div>
-
-                <h3 className="text-2xl font-black text-dark-gray mb-4 group-hover:text-primary transition-colors duration-300">
-                  {settore.title}
-                </h3>
-                
-                <p className="text-dark-gray/70 font-light leading-relaxed mb-6">
-                  {settore.description}
-                </p>
-
-                <div className="space-y-3 mb-6">
+                <div className="mt-auto grid grid-cols-2 gap-y-4 gap-x-2 pt-8 border-t border-gray-100">
                   {settore.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-secondary" />
-                      <span className="text-dark-gray font-medium">{feature}</span>
+                    <div key={idx} className="flex items-center text-xs font-bold text-dark-gray uppercase tracking-widest">
+                      <span className="w-1 h-1 bg-primary mr-2 block"></span>
+                      {feature}
                     </div>
                   ))}
                 </div>
               </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute top-4 right-4 w-32 h-32 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
             </div>
           ))}
         </div>
@@ -364,117 +268,81 @@ const SettoriPrincipali = () => {
 const ApproccioLavoro = () => {
   const steps = [
     {
-      icon: Ear,
-      title: "Ascolto attivo",
-      description: "Analizziamo le tue esigenze reali attraverso consulenze personalizzate",
-      details: ["Audit completo", "Analisi workflow", "Identificazione criticità", "Pianificazione budget"],
-      color: "from-primary to-blue-600"
+      title: "Audit e Analisi",
+      description: "Affianchiamo le aziende nell'analisi dettagliata dello stato di fatto, intercettando criticità e inefficienze operative.",
+      number: "01"
     },
     {
-      icon: Lightbulb,
-      title: "Progettazione su misura",
-      description: "Combinazione ottimale tra tecnologia, spazio e produttività",
-      details: ["Design 3D", "Prototipazione", "Test funzionali", "Ottimizzazione layout"],
-      color: "from-secondary to-orange-600"
+      title: "Progettazione e Preventivo",
+      description: "Elaboriamo proposte strutturate, calcolando l'impatto tecnico-economico e dimensionando soluzioni su misura.",
+      number: "02"
     },
     {
-      icon: Headphones,
-      title: "Fornitura e supporto",
-      description: "Consegna rapida, installazione professionale, assistenza garantita",
-      details: ["Consegna express", "Installazione certificata", "Training team", "Supporto 24/7"],
-      color: "from-tertiary-red to-red-600"
+      title: "Deploy e Installazione",
+      description: "Il nostro team si occupa dell'approvvigionamento e dell'integrazione sul campo, assicurando l'operatività del cliente.",
+      number: "03"
+    },
+    {
+      title: "Assistance & Support",
+      description: "Garantiamo SLA rigorosi, manutenzione preventiva e assistenza attiva 24/7 post fornitura.",
+      number: "04"
     }
   ];
 
   return (
-    <section id="approccio" className="py-24 bg-gradient-to-br from-tertiary-dark via-gray-900 to-tertiary-dark relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
-        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
-
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 mb-6">
-            <TrendingUp className="w-5 h-5 text-secondary" />
-            <span className="text-white font-semibold">Metodologia Consolidata</span>
+    <section id="approccio" className="py-24 bg-dark-gray relative">
+      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div>
+            <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 shadow-sm rounded-[2px] mb-6">
+              <Zap className="w-4 h-4 text-white/50" />
+              <span className="text-white text-xs font-bold uppercase tracking-widest">Sistema Testato</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black mb-2 tracking-tight text-white uppercase">
+              Metodologia <br/>Operativa
+            </h2>
           </div>
-          
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
-            Il nostro <span className="bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">approccio</span>
-          </h2>
-          <p className="text-xl text-white/80 font-light max-w-3xl mx-auto leading-relaxed">
-            Un metodo consolidato e testato per garantire il successo del tuo progetto, 
-            dalla consulenza iniziale al supporto post-vendita
+          <p className="text-lg text-gray-400 font-medium max-w-xl leading-relaxed border-l-2 border-white/10 pl-6">
+            Garantiamo processi trasparenti, tempistiche rigorose e risultati misurabili. Nessun intermediario aggiuntivo, un solo interlocutore per un'efficienza Enterprise.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-4 gap-[2px] bg-white/10 border border-white/10 rounded-[2px] overflow-hidden shadow-2xl">
           {steps.map((step, index) => (
-            <div key={index} className="group relative">
-              {/* Connection Line */}
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-10 left-full w-8 h-0.5 bg-gradient-to-r from-white/30 to-transparent z-0"></div>
-              )}
-              
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
-                <div className="text-center space-y-6">
-                  <div className="relative">
-                    <div className={`w-24 h-24 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
-                      <step.icon className="w-12 h-12 text-white" />
-                    </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      {index + 1}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-2xl font-black text-white mb-4 group-hover:text-secondary transition-colors duration-300">
-                      {step.title}
-                    </h3>
-                    <p className="text-white/80 font-light leading-relaxed mb-6">
-                      {step.description}
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    {step.details.map((detail, idx) => (
-                      <div key={idx} className="flex items-center space-x-3 text-left">
-                        <div className="w-2 h-2 bg-gradient-to-r from-secondary to-primary rounded-full"></div>
-                        <span className="text-white/70 font-medium">{detail}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+            <div key={index} className="bg-dark-gray p-8 group hover:bg-[#15203b] transition-colors relative">
+              <div className="absolute right-6 top-6 text-6xl font-black text-white/5 group-hover:text-primary/10 transition-colors">
+                {step.number}
+              </div>
+              <div className="relative z-10 pt-16">
+                <h3 className="text-xl font-black text-white mb-4 uppercase tracking-tight group-hover:text-primary transition-colors">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed font-medium">
+                  {step.description}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-            <div className="grid md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-4xl font-black text-secondary mb-2">98%</div>
-                <div className="text-white/80 font-semibold">Soddisfazione Cliente</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-black text-primary mb-2">72h</div>
-                <div className="text-white/80 font-semibold">Tempo Medio Consegna</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-black text-secondary mb-2">15+</div>
-                <div className="text-white/80 font-semibold">Anni Esperienza</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-black text-primary mb-2">500+</div>
-                <div className="text-white/80 font-semibold">Progetti Completati</div>
-              </div>
+        <div className="mt-20 pt-12 border-t border-white/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 gap-y-12">
+            <div>
+              <div className="text-5xl font-black text-white tracking-tight">98%</div>
+              <div className="text-xs text-primary font-bold uppercase tracking-widest mt-3">Retention Clienti</div>
+            </div>
+            <div>
+              <div className="text-5xl font-black text-white tracking-tight">48<span className="text-primary text-3xl">h</span></div>
+              <div className="text-xs text-primary font-bold uppercase tracking-widest mt-3">SLA Garantito</div>
+            </div>
+            <div>
+              <div className="text-5xl font-black text-white tracking-tight">15<span className="text-primary text-3xl">+</span></div>
+              <div className="text-xs text-primary font-bold uppercase tracking-widest mt-3">Anni di Attività</div>
+            </div>
+            <div>
+              <div className="text-5xl font-black text-white tracking-tight">100%</div>
+              <div className="text-xs text-primary font-bold uppercase tracking-widest mt-3">Gestione In-house</div>
             </div>
           </div>
         </div>
@@ -485,105 +353,53 @@ const ApproccioLavoro = () => {
 
 const PartnerSection = () => {
   const partners = [
-    { 
-      name: "Microsoft", 
-      category: "Software & Cloud",
-      logo: "/images/fornitori/Microsoft_logo.svg"
-    },
-    { 
-      name: "Intel", 
-      category: "Hardware",
-      logo: "/images/fornitori/Intel_logo.svg"
-    },
-    { 
-      name: "Lenovo", 
-      category: "Computing",
-      logo: "/images/fornitori/Lenovo_logo.svg"
-    },
-    { 
-      name: "Epson", 
-      category: "Printing",
-      logo: "/images/fornitori/Epson_logo.svg"
-    },
-    { 
-      name: "Herman Miller", 
-      category: "Furniture",
-      logo: "/images/fornitori/HermanMiller_logo.svg"
-    },
-    { 
-      name: "Vitra", 
-      category: "Design",
-      logo: "/images/fornitori/Logo_vitra.svg"
-    },
-    { 
-      name: "Fellowes", 
-      category: "Office Solutions",
-      logo: "/images/fornitori/Fellowes_Brands_logo.svg"
-    },
-    { 
-      name: "Logitech", 
-      category: "Peripherals",
-      logo: "/images/fornitori/Logitech_logo.svg"
-    }
+    { name: "Microsoft", category: "Software & Cloud", logo: "/images/fornitori/Microsoft_logo.svg" },
+    { name: "Intel", category: "Hardware", logo: "/images/fornitori/Intel_logo.svg" },
+    { name: "Lenovo", category: "Computing", logo: "/images/fornitori/Lenovo_logo.svg" },
+    { name: "Epson", category: "Printing", logo: "/images/fornitori/Epson_logo.svg" },
+    { name: "Herman Miller", category: "Furniture", logo: "/images/fornitori/HermanMiller_logo.svg" },
+    { name: "Vitra", category: "Design", logo: "/images/fornitori/Logo_vitra.svg" },
+    { name: "Fellowes", category: "Office Solutions", logo: "/images/fornitori/Fellowes_Brands_logo.svg" },
+    { name: "Logitech", category: "Peripherals", logo: "/images/fornitori/Logitech_logo.svg" }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-cream via-white to-cream relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23107A72' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
-        }}></div>
-      </div>
-
+    <section className="py-24 bg-white relative border-t border-gray-200">
       <div className="relative z-10 container mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-secondary/10 px-6 py-3 rounded-full border border-primary/20 mb-6">
-            <Shield className="w-5 h-5 text-primary" />
-            <span className="text-primary font-semibold">Partnership di Eccellenza</span>
+        <div className="mb-16 flex flex-col items-center justify-center text-center">
+          <div className="inline-flex items-center space-x-3 bg-gray-50 border border-gray-200 px-4 py-2 shadow-sm rounded-[2px] mb-6">
+            <Shield className="w-4 h-4 text-primary" />
+            <span className="text-dark-gray text-xs font-bold uppercase tracking-widest">Partnership Inoltrate</span>
           </div>
-          
-          <h2 className="text-3xl md:text-5xl font-black text-dark-gray mb-4">
-            I nostri <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">partner</span>
+          <h2 className="text-4xl md:text-5xl font-black text-dark-gray mb-4 tracking-tight uppercase">
+            Network <span className="text-primary">Fornitori</span>
           </h2>
-          <p className="text-lg text-dark-gray/70 font-light max-w-2xl mx-auto">
-            Collaboriamo con i migliori brand del settore per offrirti soluzioni all'avanguardia
+          <p className="text-lg text-gray-500 font-medium max-w-2xl mx-auto">
+            Selezioniamo i brand leader del mercato per garantire i più alti standard qualitativi nelle forniture aziendali.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-[2px] bg-gray-200 border border-gray-200 rounded-[2px] overflow-hidden shadow-sm">
           {partners.map((partner, index) => (
             <div 
               key={index}
-              className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-primary/10 hover:border-secondary/30 overflow-hidden"
+              className="group relative bg-white p-10 hover:bg-gray-50 transition-colors flex flex-col items-center justify-center min-h-[200px]"
             >
-              {/* Background Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div className="relative z-10 text-center space-y-4">
-                <div className="w-20 h-20 mx-auto flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                  <img 
-                    src={partner.logo} 
-                    alt={`${partner.name} logo`}
-                    className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
-                  />
-                </div>
-                
-                <div>
-                  <h3 className="font-black text-dark-gray group-hover:text-primary transition-colors duration-300">
-                    {partner.name}
-                  </h3>
-                  <p className="text-xs text-dark-gray/60 font-semibold mt-1">
-                    {partner.category}
-                  </p>
-                </div>
+              <div className="w-32 h-16 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                <img 
+                  src={partner.logo} 
+                  alt={`${partner.name} logo`}
+                  className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                />
               </div>
-
-              {/* Decorative Corner */}
-              <div className="absolute top-2 right-2 w-3 h-3 bg-gradient-to-br from-secondary to-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute bottom-4 text-center w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                  {partner.category}
+                </p>
+              </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
@@ -593,141 +409,102 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
   const cataloghi = [
     {
       title: "Informatica",
-      description: "Notebook, desktop, server, NAS, networking, licenze software di ultima generazione per la massima produttività aziendale",
+      description: "Notebook, desktop, server, NAS, networking e licenze software aziendali.",
       icon: Laptop,
       image: "/images/informatica.jpg",
-      background: "cream",
       features: ["Hardware Enterprise", "Cloud Solutions", "Cybersecurity", "Software Licensing"],
-      stats: "2000+ Prodotti",
-      color: "from-primary to-blue-600"
+      stats: "2000+ Prodotti"
     },
     {
       title: "Arredamento",
-      description: "Mobili, scrivanie regolabili, sedute ergonomiche e design per ambienti di lavoro moderni.",
+      description: "Spazi operativi e direzionali progettati per l'efficienza organizzativa.",
       icon: Chair,
       image: "/images/arredo-ufficio.jpg",
-      background: "white",
-      features: ["Design Ergonomico", "Materiali Premium", "Personalizzazione", "Sostenibilità"],
-      stats: "1000+ Soluzioni",
-      color: "from-secondary to-orange-600"
+      features: ["Design Ergonomico", "Materiali Premium", "Personalizzazione", "Spazi Chiavi in Mano"],
+      stats: "1000+ Soluzioni"
     },
     {
-      title: "Office",
-      description: "Carta, cancelleria, toner, archiviazione e materiali essenziali per l'ufficio.",
+      title: "Consumabili",
+      description: "Ufficio strutturato con fornitura ricorrente di materiale tecnico e consumabili.",
       icon: FileText,
       image: "/images/forniture-e-materiali.jpg",
-      background: "cream",
-      features: ["Stock Garantito", "Consegna Express", "Eco-Friendly", "Bulk Pricing"],
+      features: ["Stock Garantito", "Consegna Express", "Certificazioni", "Bulk Pricing"],
       stats: "5000+ Articoli",
-      color: "from-tertiary-red to-red-600",
       comingSoon: true,
-      comingSoonText: 'In arrivo a breve!',
+      comingSoonText: 'Q3 2026',
     },
     {
       title: "Horeca",
-      description: "Macchinari, impianti, automazione e soluzioni su misura per l'industria alimentare.",
-      icon: Layers, // Puoi scegliere un'icona più adatta se vuoi
+      description: "Sistemi automatizzati, impianti industriali e macchinari di alto livello.",
+      icon: Layers,
       image: "/images/3094495_banco-vendita-gastronomia-degustazione-arredo-negozio-industriale-vetrina-refrigerata.jpg",
-      background: "cream",
-      features: [
-        "Impianti alimentari",
-        "Linee di produzione",
-        "Confezionamento",
-        "Automazione industriale"
-      ],
-      stats: "500+ Macchinari",
-      color: "from-green-700 to-lime-500"
+      features: ["Impianti Alimentari", "Linee Produzione", "Confezionamento", "Automazione"],
+      stats: "500+ Macchinari"
     },
   ];
 
   return (
-    <section id="catalogo" className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section id="catalogo" className="py-24 relative bg-cream border-t border-gray-200">
+      <div className="absolute inset-0 bg-grid-pattern opacity-60"></div>
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-secondary/10 px-6 py-3 rounded-full border border-primary/20 mb-6">
-            <Layers className="w-5 h-5 text-primary" />
-            <span className="text-primary font-semibold">Catalogo Completo</span>
+          <div className="inline-flex items-center space-x-3 bg-white border border-gray-200 px-4 py-2 shadow-sm rounded-[2px] mb-6">
+            <Layers className="w-4 h-4 text-primary" />
+            <span className="text-dark-gray text-xs font-bold uppercase tracking-widest">Offerta Prodotti</span>
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-black text-dark-gray mb-6">
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Catalogo
-            </span> per settori
+          <h2 className="text-4xl md:text-5xl font-black text-dark-gray mb-4 tracking-tight uppercase">
+            Catalogo <span className="text-primary">Forniture</span>
           </h2>
-          <p className="text-xl text-dark-gray/70 font-light max-w-3xl mx-auto leading-relaxed">
-            Scopri la nostra gamma completa di prodotti e servizi organizzati per settore, 
-            con soluzioni innovative per ogni esigenza imprenditoriale
+          <p className="text-lg text-gray-500 font-medium max-w-2xl mx-auto">
+            Scopri la nostra gamma completa organizzata per settore divisionale.
           </p>
         </div>
 
-        <div className="space-y-0">
+        <div className="space-y-[2px] bg-gray-200 border border-gray-200 rounded-[2px] overflow-hidden shadow-sm">
           {cataloghi.map((catalogo, index) => (
             <div 
               key={index}
-              className={`py-20 px-10 md:px-20 relative ${catalogo.background === 'cream' ? 'bg-gradient-to-br from-cream to-white' : 'bg-gradient-to-br from-white to-cream'}`}
+              className={`p-10 md:p-16 bg-white relative group ${catalogo.comingSoon ? 'grayscale opacity-70' : ''}`}
             >
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23107A72' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-                }}></div>
-              </div>
-
-              <div className="relative z-10">
-                <div className={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                  <div className={`space-y-8 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                    <div className="flex items-center space-x-4 mb-8">
-                      <div className={`w-16 h-16 bg-gradient-to-br ${catalogo.color} rounded-2xl flex items-center justify-center shadow-lg`}>
-                        <catalogo.icon className="w-8 h-8 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-3xl md:text-4xl font-black text-dark-gray">
-                          {catalogo.title}
-                        </h3>
-                        <div className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full w-fit mt-2">
-                          {catalogo.stats}
-                        </div>
-                      </div>
+              <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                <div className={`space-y-8 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                  <div className="flex items-center space-x-6 mb-8">
+                    <div className="w-16 h-16 bg-gray-50 border border-gray-200 rounded-[2px] flex items-center justify-center shadow-sm">
+                      <catalogo.icon className="w-8 h-8 text-primary" />
                     </div>
-
-                    <p className="text-xl text-dark-gray/70 font-light leading-relaxed">
-                      {catalogo.description}
-                    </p>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      {catalogo.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center space-x-3 bg-white/50 rounded-xl p-4 border border-primary/10">
-                          <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
-                          <span className="text-dark-gray font-semibold">{feature}</span>
-                        </div>
-                      ))}
+                    <div>
+                      <h3 className="text-3xl font-black text-dark-gray uppercase tracking-tight">
+                        {catalogo.title}
+                      </h3>
+                      <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">
+                        {catalogo.comingSoon ? catalogo.comingSoonText : catalogo.stats}
+                      </div>
                     </div>
                   </div>
 
-                  <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                    <div className="relative group">
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
-                      <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-primary/10 group-hover:shadow-3xl transition-all duration-500">
-                        <div className="aspect-video overflow-hidden">
-                          <img 
-                            src={catalogo.image} 
-                            alt={catalogo.title}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                          />
-                        </div>
-                        <div className="p-6 bg-gradient-to-br from-white to-cream/50">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <h4 className="font-black text-dark-gray text-lg">{catalogo.title}</h4>
-                              <p className="text-dark-gray/60 font-medium">Soluzioni professionali</p>
-                            </div>
-                            <div className={`w-12 h-12 bg-gradient-to-br ${catalogo.color} rounded-xl flex items-center justify-center`}>
-                              <catalogo.icon className="w-6 h-6 text-white" />
-                            </div>
-                          </div>
-                        </div>
+                  <p className="text-lg text-gray-600 font-medium leading-relaxed border-l-2 border-primary pl-4">
+                    {catalogo.description}
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-4 pt-4">
+                    {catalogo.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center space-x-3">
+                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span className="text-dark-gray text-xs font-bold uppercase tracking-widest">{feature}</span>
                       </div>
-                    </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                  <div className="relative border border-gray-200 rounded-[2px] overflow-hidden shadow-sm aspect-video">
+                    <img 
+                      src={catalogo.image} 
+                      alt={catalogo.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                    />
+                    <div className="absolute inset-0 border border-transparent group-hover:border-primary/20 transition-colors pointer-events-none z-10"></div>
                   </div>
                 </div>
               </div>
@@ -765,121 +542,86 @@ const ContattiSection = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
   };
 
   return (
-    <section id="contatti" className="py-24 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/90 via-primary to-secondary/90"></div>
-        <div className="absolute top-20 left-20 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/5 rounded-full blur-2xl animate-pulse delay-2000"></div>
-      </div>
-
+    <section id="contatti" className="py-24 bg-dark-gray relative">
+      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      
       <div className="relative z-10 container mx-auto px-6">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 mb-6">
-            <Mail className="w-5 h-5 text-white" />
-            <span className="text-white font-semibold">Inizia il Tuo Progetto</span>
+          <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 shadow-sm rounded-[2px] mb-6">
+            <Mail className="w-4 h-4 text-primary" />
+            <span className="text-white text-xs font-bold uppercase tracking-widest">Inizia il Progetto</span>
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
-            <span className="bg-gradient-to-r from-white to-cream bg-clip-text text-transparent">
-              Contattaci
-            </span>
+          <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tight">
+            Contattaci
           </h2>
-          <p className="text-xl text-white/90 font-light max-w-3xl mx-auto leading-relaxed">
-            Vuoi ricevere un preventivo su misura o semplicemente saperne di più? 
-            Il nostro team di esperti è qui per trasformare le tue idee in realtà.
+          <p className="text-xl text-white/70 font-medium max-w-2xl mx-auto leading-relaxed border-l-2 border-primary pl-4 text-left">
+            Richiedi un audit operativo gratuito o un preventivo di fornitura. Tempi di risposta medi: under 24h.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-20">
-          {/* Colonna sinistra: contatti */}
-          <div className="flex flex-col gap-8 justify-center">
-            <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
-              <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <MapPin className="w-10 h-10 text-white" />
-              </div>
+        <div className="grid lg:grid-cols-2 gap-[2px] bg-white/10 border border-white/10 rounded-[2px] p-[2px] shadow-2xl">
+          {/* Contatti */}
+          <div className="flex flex-col gap-[2px]">
+            <div className="group flex flex-col items-start gap-4 bg-dark-gray p-8 hover:bg-[#15203b] transition-colors relative h-full">
+              <MapPin className="w-8 h-8 text-white mb-2" />
               <div>
-                <h3 className="text-2xl font-black text-white mb-2">Sede Operativa</h3>
-                <p className="text-white/80 text-lg font-semibold">Via Bellavista 5<br/>Castelnuovo di Porto (RM)</p>
-                <a 
-                  href="https://www.google.com/maps?q=Via+Bellavista+5,+Castelnuovo+di+Porto+(RM)" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-secondary underline text-sm font-semibold"
-                >Visualizza su Google Maps →</a>
+                <h3 className="text-xl font-bold text-white mb-1 uppercase">Sede Operativa</h3>
+                <p className="text-white/60 text-sm font-medium mb-4">Via Nazionale delle Puglie, 7<br/>Casalnuovo di Napoli (NA), 80013</p>
+                <a href="https://www.google.com/maps?q=Via+Nazionale+delle+Puglie,+7,+Casalnuovo+di+Napoli+(NA)" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-white uppercase text-[10px] font-bold tracking-widest flex items-center gap-1 transition-colors">Google Maps <ArrowRight className="w-3 h-3" /></a>
               </div>
             </div>
-            <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
-              <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <MapPin className="w-10 h-10 text-white" />
-              </div>
+            <div className="group flex flex-col items-start gap-4 bg-dark-gray p-8 hover:bg-[#15203b] transition-colors relative h-full">
+              <MapPin className="w-8 h-8 text-white mb-2" />
               <div>
-                <h3 className="text-2xl font-black text-white mb-2">Sede Legale</h3>
-                <p className="text-white/80 text-lg font-semibold">Via San Lazzaro<br/>Frignano (CE)</p>
-                <a 
-                  href="https://www.google.com/maps?q=Via+San+Lazzaro,+Frignano+(CE)" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-secondary underline text-sm font-semibold"
-                >Visualizza su Google Maps →</a>
+                <h3 className="text-xl font-bold text-white mb-1 uppercase">Sede Legale</h3>
+                <p className="text-white/60 text-sm font-medium mb-4">Via San Lazzaro, 55<br/>Frignano (CE), 81030</p>
+                <a href="https://www.google.com/maps?q=Via+San+Lazzaro,+55,+Frignano+(CE)" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-white uppercase text-[10px] font-bold tracking-widest flex items-center gap-1 transition-colors">Google Maps <ArrowRight className="w-3 h-3" /></a>
               </div>
             </div>
-            <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
-              <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Phone className="w-10 h-10 text-white" />
+            
+            <div className="grid grid-cols-2 gap-[2px]">
+              <div className="group flex flex-col items-start gap-4 bg-dark-gray p-8 hover:bg-[#15203b] transition-colors relative h-full">
+                <Phone className="w-8 h-8 text-white mb-2" />
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-1 uppercase">Telefono</h3>
+                  <p className="text-white/80 text-sm font-bold">+39 081 1893 9337</p>
+                  <p className="text-white/40 text-xs font-medium mt-1">H24/7</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-2xl font-black text-white mb-2">Telefono</h3>
-                <p className="text-white/80 text-lg font-semibold">+39 081 1893 9337</p>
-                <p className="text-white/60 font-medium mt-1">Chiamate urgenti 24/7</p>
-              </div>
-            </div>
-            <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
-              <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Mail className="w-10 h-10 text-white" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-black text-white mb-2">Email</h3>
-                <p className="text-white/80 text-lg font-semibold">info@fortunaedilizia.it</p>
-                <p className="text-white/60 font-medium mt-1">Risposta entro 2 ore</p>
-                <a 
-                  href="mailto:info@fortunaedilizia.it"
-                  className="mt-4 inline-block bg-secondary text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 hover:bg-secondary/90 transition-transform duration-300 text-lg"
-                  style={{ background: 'linear-gradient(90deg, #FF8600 0%, #FFBB36 100%)' }}
-                >
-                  Scrivici una mail!
-                </a>
-              </div>
-            </div>
-            <div className="group flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
-              <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Calendar className="w-10 h-10 text-white" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-black text-white mb-2">Orari</h3>
-                <div className="text-white/80 text-lg font-semibold">Lun–Ven 08:00–18:00<br/>Sab 09:00–13:00<br/>Dom chiuso</div>
+              <div className="group flex flex-col items-start gap-4 bg-dark-gray p-8 hover:bg-[#15203b] transition-colors relative h-full">
+                <Calendar className="w-8 h-8 text-white mb-2" />
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-1 uppercase">Orari</h3>
+                  <div className="text-white/80 text-sm font-medium">L-V: 08-18<br/>S: 09-13</div>
+                </div>
               </div>
             </div>
           </div>
-          {/* Colonna destra: benefit */}
-          <div className="flex flex-col justify-center h-full">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-10 border-2 border-secondary/40 shadow-xl">
-              <h3 className="text-2xl font-black text-white mb-6 text-center">Perché scegliere B2B Group by Fortuna SRLS?</h3>
-              <div className="space-y-4">
-                {[
-                  "Consulenza gratuita e personalizzata",
-                  "Preventivi competitivi e trasparenti",
-                  "Consegna e installazione professionale",
-                  "Garanzia estesa su tutti i prodotti",
-                  "Supporto tecnico post-vendita"
-                ].map((benefit, idx) => (
-                  <div key={idx} className="flex items-center space-x-3">
-                    <CheckCircle className="w-6 h-6 text-secondary flex-shrink-0" />
-                    <span className="text-white font-semibold">{benefit}</span>
-                  </div>
-                ))}
-              </div>
+
+          <div className="flex flex-col h-full">
+            <div className="bg-dark-gray p-12 h-full flex flex-col justify-center relative group">
+               <Mail className="w-8 h-8 text-primary mb-6" />
+               <h3 className="text-3xl font-black text-white mb-4 tracking-tight uppercase">Email Diretta</h3>
+               <p className="text-white/60 font-medium mb-12">Scrivici direttamente per ricevere documentazione, listini o un primo audit.</p>
+               
+               <div className="space-y-4 mb-12">
+                 <div>
+                   <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">Informazioni Commerciali</p>
+                   <p className="text-white text-xl font-bold">info@b2b-group.it</p>
+                 </div>
+                 <div>
+                   <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">Amministrazione PEC</p>
+                   <p className="text-white text-xl font-bold">b2bgroupsrls@pec.it</p>
+                 </div>
+               </div>
+
+               <a 
+                 href="mailto:info@b2b-group.it"
+                 className="mt-auto inline-flex items-center justify-center bg-primary text-white border border-primary px-8 py-4 font-bold text-xs uppercase tracking-widest hover:bg-transparent hover:text-white transition-colors duration-300 w-full rounded-[2px]"
+               >
+                 Invia Richiesta
+               </a>
             </div>
           </div>
         </div>
@@ -890,24 +632,26 @@ const ContattiSection = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-tertiary-dark via-gray-900 to-tertiary-dark py-16 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23107A72' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}></div>
+    <footer className="bg-[#0b101d] py-10 border-t border-white/5">
+      <div className="container mx-auto px-6 grid md:grid-cols-2 gap-8 items-center border-b border-white/5 pb-10 mb-6">
+        <div>
+           <img src="/images/logo/logodef.svg" alt="B2B Group Logo" className="h-8 grayscale brightness-200 opacity-60 mb-4" />
+           <p className="text-white/40 text-xs font-medium max-w-sm">Asset e forniture di alto livello progettate per supportare l'espansione del tuo business in ambito IT, office, arredo direzionale e impianti industriali.</p>
+        </div>
+        <div className="flex flex-col md:items-end">
+           <a href="mailto:info@b2b-group.it" className="inline-block border border-white/20 text-white text-xs font-bold px-8 py-3 rounded-[2px] hover:bg-white hover:text-dark-gray transition-colors tracking-widest uppercase">
+             Richiedi Preventivo Rapido
+           </a>
+        </div>
       </div>
-      <div className="relative z-10 container mx-auto px-6 flex flex-col items-center justify-center text-center">
-        <h2 className="text-3xl md:text-5xl font-black text-white mb-6 drop-shadow-lg">
-          Hai bisogno di un preventivo personalizzato?
-        </h2>
-        <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-          Il nostro team ti risponde rapidamente! Clicca sul pulsante qui sotto per inviare una mail diretta al nostro reparto preventivi.
+      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+        <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest">
+          &copy; {new Date().getFullYear()} B2B Group SRLS. P.IVA 09292831210. Tutti i diritti riservati.
         </p>
-        <a href="mailto:preventivi@b2b-group.it" className="inline-block bg-gradient-to-r from-primary to-secondary text-white text-xl font-bold px-10 py-5 rounded-full shadow-2xl hover:scale-105 hover:shadow-primary/40 transition-all duration-300 mb-4">
-          Richiedi Preventivo via Email
-        </a>
-        <p className="text-white/60 text-sm mt-2">Risposta garantita entro 2 ore lavorative</p>
+        <div className="text-white/30 text-[10px] font-bold uppercase tracking-widest mt-4 md:mt-0 flex gap-4">
+          <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+          <a href="#" className="hover:text-primary transition-colors">Termini Legali</a>
+        </div>
       </div>
     </footer>
   );
