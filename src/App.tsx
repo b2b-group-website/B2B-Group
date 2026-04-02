@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Monitor, PenTool, Armchair as Chair, Layers, Ear, Lightbulb, Headphones, Laptop, FileText, Building, Video, Mail, MapPin, Phone, Menu, X, Users, Shield, Zap, Star, Award, TrendingUp, CheckCircle, ArrowRight, Play, Lock, Eye, EyeOff, Save, Download, Bold, Italic, List, ListOrdered, Quote, Code, Link, Image, Undo, Redo, Calendar, User, Briefcase, Globe, Hash, CreditCard, FileText as FileTextIcon } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Armchair as Chair, Layers, Laptop, FileText, Mail, MapPin, Phone, Menu, X, Shield, Zap, CheckCircle, ArrowRight, Calendar } from 'lucide-react';
 import ProductPreviewFan, { ProductCategory } from "./ProductPreviewFan";
 
 const Header = ({ onEcommerce }: { onEcommerce?: () => void }) => {
@@ -14,47 +14,37 @@ const Header = ({ onEcommerce }: { onEcommerce?: () => void }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-    }
-    setIsMenuOpen(false);
-  };
-
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white border-b border-gray-200 py-4 shadow-sm' : 'bg-white/95 backdrop-blur-sm border-b border-gray-100 py-5'}`}>
-      <div className="container mx-auto px-6">
+    <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-md border-b border-gray-100 py-3 shadow-sm' : 'bg-transparent py-5'}`}>
+      <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-            <img 
-              src="/images/logo/logodef.svg" 
-              alt="B2B Group Logo" 
-              className="h-8 md:h-12 w-auto object-contain"
-            />
+          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+             <img src="/images/logo/logodef.svg" alt="B2B Group" className="h-8 md:h-10 w-auto" />
           </div>
           
-          <nav className="hidden md:flex items-center space-x-8">
-            <button onClick={() => scrollToSection('settori')} className="text-xs font-bold text-dark-gray hover:text-primary transition-colors tracking-widest uppercase">
-              Settori
-            </button>
-            <button onClick={() => scrollToSection('approccio')} className="text-xs font-bold text-dark-gray hover:text-primary transition-colors tracking-widest uppercase">
-              Metodologia
-            </button>
-            <button onClick={() => scrollToSection('catalogo')} className="text-xs font-bold text-dark-gray hover:text-primary transition-colors tracking-widest uppercase">
-              Catalogo
-            </button>
-            <button onClick={onEcommerce} className="text-xs font-bold text-dark-gray hover:text-primary transition-colors tracking-widest uppercase flex items-center gap-2">
-              Ecommerce
-            </button>
-            <button onClick={() => scrollToSection('contatti')} className="bg-dark-gray text-white px-6 py-2 rounded-[2px] border border-dark-gray hover:bg-transparent hover:text-dark-gray transition-colors font-bold text-xs uppercase tracking-widest">
-              Contattaci
-            </button>
+          <nav className="hidden md:flex space-x-8 items-center">
+            <button onClick={() => window.location.hash = 'settori'} className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Aree di Intervento</button>
+            <button onClick={() => window.location.hash = 'approccio'} className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Metodo</button>
+            <button onClick={() => window.location.hash = 'catalogo'} className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">Forniture</button>
           </nav>
+          
+          <div className="hidden md:flex space-x-4">
+            <button 
+              onClick={() => window.location.hash = 'contatti'}
+              className="text-sm font-semibold text-gray-700 hover:text-primary transition-colors px-4 py-2"
+            >
+              Contatti
+            </button>
+            <button 
+              onClick={onEcommerce}
+              className="bg-primary text-white px-6 py-2 rounded-full text-sm font-semibold shadow-sm hover:shadow-md hover:bg-primary/90 transition-all"
+            >
+              Ecommerce Online
+            </button>
+          </div>
 
           <button 
-            className="md:hidden relative z-10 text-dark-gray p-2 hover:bg-gray-50 rounded-[2px] transition-colors"
+            className="md:hidden text-gray-600 p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -62,20 +52,13 @@ const Header = ({ onEcommerce }: { onEcommerce?: () => void }) => {
         </div>
 
         {isMenuOpen && (
-          <nav className="md:hidden mt-5 pb-5 border-t border-gray-100 pt-5 bg-white shadow-xl absolute left-0 right-0 px-6 top-full">
-            <div className="flex flex-col space-y-1">
-              <button onClick={() => scrollToSection('settori')} className="text-left px-2 py-3 text-xs text-dark-gray hover:text-primary font-bold uppercase tracking-widest transition-colors border-b border-gray-50">
-                Settori
-              </button>
-              <button onClick={() => scrollToSection('approccio')} className="text-left px-2 py-3 text-xs text-dark-gray hover:text-primary font-bold uppercase tracking-widest transition-colors border-b border-gray-50">
-                Metodologia
-              </button>
-              <button onClick={() => scrollToSection('catalogo')} className="text-left px-2 py-3 text-xs text-dark-gray hover:text-primary font-bold uppercase tracking-widest transition-colors border-b border-gray-50">
-                Catalogo
-              </button>
-              <button onClick={() => scrollToSection('contatti')} className="text-center px-2 py-3 text-xs bg-dark-gray text-white font-bold uppercase tracking-widest mt-4 rounded-[2px]">
-                Contattaci
-              </button>
+          <nav className="md:hidden mt-4 pb-4 border-t border-gray-100 pt-4 bg-white/95 backdrop-blur-md absolute left-0 right-0 px-6 top-full shadow-lg rounded-b-2xl">
+            <div className="flex flex-col space-y-4">
+              <button onClick={() => { window.location.hash = 'settori'; setIsMenuOpen(false); }} className="text-left text-sm font-semibold text-gray-700">Aree di Intervento</button>
+              <button onClick={() => { window.location.hash = 'approccio'; setIsMenuOpen(false); }} className="text-left text-sm font-semibold text-gray-700">Metodo</button>
+              <button onClick={() => { window.location.hash = 'catalogo'; setIsMenuOpen(false); }} className="text-left text-sm font-semibold text-gray-700">Forniture</button>
+              <button onClick={() => { window.location.hash = 'contatti'; setIsMenuOpen(false); }} className="text-left text-sm font-semibold text-primary">Contatti</button>
+              <button onClick={onEcommerce} className="bg-primary text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-sm w-full text-center">Ecommerce Online</button>
             </div>
           </nav>
         )}
@@ -85,99 +68,50 @@ const Header = ({ onEcommerce }: { onEcommerce?: () => void }) => {
 };
 
 const HeroSection = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section className="relative min-h-[90vh] bg-cream flex items-center pt-24 pb-16 overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pattern opacity-60"></div>
-
-      <div className="relative z-10 container mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-        <div className="space-y-10">
-          <div className="inline-flex items-center space-x-3 bg-white border border-gray-200 px-4 py-2 shadow-sm rounded-[2px]">
-            <div className="w-2 h-2 bg-primary rounded-[1px]"></div>
-            <span className="text-dark-gray text-xs font-bold uppercase tracking-widest">Soluzioni Enterprise B2B</span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-black text-dark-gray leading-[1.05] tracking-tight">
-            Asset e <br />
-            Forniture per <br />
-            <span className="text-primary">l'Impresa.</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-gray-600 font-medium leading-relaxed max-w-lg border-l-2 border-primary pl-6">
-            Infrastrutture IT, arredi direzionali e impianti industriali integrati. Un unico partner affidabile per l'espansione e l'efficienza aziendale.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 pt-2">
-            <button 
-              onClick={() => scrollToSection('contatti')}
-              className="bg-primary text-white border border-primary px-8 py-4 text-xs font-bold uppercase tracking-widest shadow-sm hover:bg-white hover:text-primary transition-colors flex items-center justify-center group rounded-[2px]"
-            >
-              Richiedi Consulenza
-              <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button 
-              onClick={() => scrollToSection('catalogo')}
-              className="bg-white border border-gray-300 text-dark-gray px-8 py-4 text-xs font-bold uppercase tracking-widest shadow-sm hover:bg-gray-50 transition-colors flex items-center justify-center rounded-[2px] hover:border-dark-gray"
-            >
-              Esplora Settori
-            </button>
-          </div>
-
-          <div className="grid grid-cols-3 gap-6 pt-10 border-t border-gray-200">
-            <div>
-              <div className="text-3xl font-black text-dark-gray tracking-tight">500<span className="text-primary">+</span></div>
-              <div className="text-xs text-secondary font-bold mt-2 uppercase tracking-wider">Clienti</div>
-            </div>
-            <div>
-              <div className="text-3xl font-black text-dark-gray tracking-tight">15<span className="text-primary">+</span></div>
-              <div className="text-xs text-secondary font-bold mt-2 uppercase tracking-wider">Anni</div>
-            </div>
-            <div>
-              <div className="text-3xl font-black text-dark-gray tracking-tight">24/7</div>
-              <div className="text-xs text-secondary font-bold mt-2 uppercase tracking-wider">Supporto</div>
-            </div>
-          </div>
+    <section className="pt-32 pb-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden relative border-b border-gray-100">
+      <div className="absolute top-0 right-0 -mr-40 -mt-40 w-96 h-96 rounded-full bg-primary/5 blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 -ml-40 -mb-40 w-96 h-96 rounded-full bg-blue-500/5 blur-3xl"></div>
+      
+      <div className="container mx-auto px-6 max-w-7xl relative z-10 flex flex-col items-center text-center">
+        <div className="inline-flex items-center space-x-2 bg-white border border-gray-100 rounded-full px-4 py-1.5 shadow-sm mb-8 text-primary shadow-primary/5">
+           <Zap className="w-4 h-4" />
+           <span className="text-xs font-semibold">Infrastruttura globale B2B</span>
         </div>
-
-        <div className="w-full relative min-h-[500px]">
-          <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-[2px] bg-gray-200 border border-gray-200 rounded-[2px] overflow-hidden shadow-lg p-[2px]">
-            <div className="bg-white p-8 flex flex-col justify-between group hover:bg-gray-50 transition-colors relative overflow-hidden">
-              <Monitor className="w-8 h-8 text-primary mb-6" />
-              <div>
-                <h3 className="font-bold text-dark-gray text-xl mb-1 uppercase tracking-tight">Informatica</h3>
-                <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">Server & IT</p>
-              </div>
-            </div>
-            <div className="bg-dark-gray p-8 flex flex-col justify-between group hover:bg-[#15203b] transition-colors relative overflow-hidden">
-              <Layers className="w-8 h-8 text-secondary mb-6 relative z-10" />
-              <div className="relative z-10">
-                <h3 className="font-bold text-white text-xl mb-1 uppercase tracking-tight">Horeca</h3>
-                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider">Impianti & Auto</p>
-              </div>
-            </div>
-            <div className="bg-primary p-8 flex flex-col justify-between group hover:bg-primary-dark transition-colors relative overflow-hidden">
-               <Chair className="w-8 h-8 text-white mb-6 relative z-10" />
-               <div className="relative z-10">
-                 <h3 className="font-bold text-white text-xl mb-1 uppercase tracking-tight">Arredo</h3>
-                 <p className="text-xs text-white/80 font-semibold uppercase tracking-wider">Uffici & Design</p>
-               </div>
-            </div>
-            <div className="bg-white p-8 flex flex-col justify-between group hover:bg-gray-50 transition-colors relative overflow-hidden">
-               <FileText className="w-8 h-8 text-primary mb-6" />
-               <div>
-                 <h3 className="font-bold text-dark-gray text-xl mb-1 uppercase tracking-tight">Office</h3>
-                 <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">Consumabili</p>
-               </div>
-            </div>
-          </div>
+        
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-gray-900 tracking-tight leading-[1.05] max-w-5xl mb-6">
+          Progettiamo l'assetto per <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">far scalare</span> il tuo business.
+        </h1>
+        
+        <p className="text-xl md:text-2xl text-gray-500 max-w-2xl mb-10 leading-relaxed font-medium">
+          Dalla fornitura IT all'arredo direzionale, fino agli impianti industriali. Il partner enterprise per un'operatività senza ostacoli.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <button onClick={() => window.location.hash = 'contatti'} className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-4 text-base font-semibold transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto">
+            Inizia il progetto <ArrowRight className="w-5 h-5" />
+          </button>
+          <button onClick={() => window.location.hash = 'catalogo'} className="bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 rounded-full px-8 py-4 text-base font-semibold transition-all shadow-sm w-full sm:w-auto">
+            Esplora il catalogo
+          </button>
         </div>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-20 max-w-7xl mx-auto px-6 relative z-10">
+        {[
+           { title: "Informatica & Cloud", icon: Laptop, text: "Server, Endpoint e Networking" },
+           { title: "Arredo Direzionale", icon: Chair, text: "Uffici e spazi operativi" },
+           { title: "Impianti Horeca", icon: Layers, text: "Automazione industriale" },
+           { title: "Consumabili Office", icon: FileText, text: "Forniture periodiche garantite" }
+        ].map((item, idx) => (
+           <div key={idx} className="bg-white border border-gray-100/80 rounded-2xl p-6 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(6,81,237,0.1)] transition-all duration-300 transform hover:-translate-y-1">
+             <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center text-primary mb-5">
+               <item.icon className="w-6 h-6 stroke-[2px]" />
+             </div>
+             <h3 className="text-lg text-gray-900 font-bold mb-2">{item.title}</h3>
+             <p className="text-sm text-gray-500 font-medium">{item.text}</p>
+           </div>
+        ))}
       </div>
     </section>
   );
@@ -185,79 +119,47 @@ const HeroSection = () => {
 
 const SettoriPrincipali = () => {
   const settori = [
-    {
-      icon: Monitor,
-      title: "Informatica Professional",
-      description: "Hardware enterprise, server, reti, licensing e soluzioni cloud integrate.",
-      features: ["Consulenza IT", "Fornitura Client", "Networking", "Software"],
-    },
-    {
-      icon: Chair,
-      title: "Arredo Direzionale",
-      description: "Progettazione e fornitura di arredi operativi ed ergonomici su misura per uffici e sale riunioni.",
-      features: ["Ergonomia", "Materiali Premium", "Uffici Chiavi in Mano", "Design"],
-    },
-    {
-      icon: Layers,
-      title: "Forniture Horeca",
-      description: "Impianti alimentari, macchinari d'automazione e linee produttive ad alte prestazioni.",
-      features: ["Automazione", "Linee di Confezionamento", "Attrezzature Industriali", "Progetti Custom"],
-    },
-    {
-      icon: FileText,
-      title: "Consumabili Corporate",
-      description: "Approvvigionamento di materiale di cancelleria, consumabili stampa e accessori da ufficio.",
-      features: ["Stock Garantito", "Consegne Programmate", "Materiali Certificati", "Eco-Friendly"],
-    },
+    { title: "Informatica Professional", icon: Laptop, category: "Hardware & Cloud", features: ["Networking", "Server", "Endpoints", "Licensing"] },
+    { title: "Arredo Direzionale", icon: Chair, category: "Uffici & Operatività", features: ["Ergonomia", "Chiavi in mano", "Space Plan", "Acustica"] },
+    { title: "Forniture Horeca", icon: Layers, category: "Impianti Industriali", features: ["Automazione", "Refrigerazione", "Cottura", "Lavaggio"] },
+    { title: "Consumabili Office", icon: FileText, category: "Approvvigionamento", features: ["Materiali", "Print", "Cancelleria", "Logistica"] },
   ];
 
   return (
-    <section id="settori" className="py-24 bg-white relative border-t border-gray-200">
-      <div className="container mx-auto px-6">
-        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div>
-            <div className="inline-flex items-center space-x-3 bg-gray-50 border border-gray-200 px-4 py-2 shadow-sm rounded-[2px] mb-6">
-              <Layers className="w-4 h-4 text-primary" />
-              <span className="text-dark-gray text-xs font-bold uppercase tracking-widest">Aree di Intervento</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black text-dark-gray tracking-tight uppercase">
-              I Nostri <span className="text-primary">Settori</span>
+    <section id="settori" className="py-24 bg-white relative">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <div className="text-center md:text-left mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4">
+              Aree operative B2B. <br className="hidden md:block"/>Tutto in un'unica <span className="text-primary">infrastruttura.</span>
             </h2>
           </div>
-          <p className="text-lg text-gray-500 font-medium max-w-xl leading-relaxed border-l-2 border-gray-200 pl-6">
-            Interveniamo a più livelli per fornire ad ogni impresa gli strumenti operativi e gli spazi essenziali alla propria espansione.
+          <p className="text-lg text-gray-500 font-medium max-w-lg md:text-right">
+            L'ecosistema aziendale si articola in quattro hub d'intervento specializzati per l'espansione del tuo business.
           </p>
         </div>
-
-        <div className="grid md:grid-cols-2 gap-[2px] bg-gray-200 border border-gray-200 rounded-[2px] overflow-hidden">
-          {settori.map((settore, index) => (
-            <div 
-              key={index}
-              className="bg-white p-10 hover:bg-gray-50 transition-colors group relative"
-            >
-              <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
-                <settore.icon className="w-32 h-32 text-dark-gray" />
-              </div>
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="mb-8">
-                  <settore.icon className="w-10 h-10 text-primary mb-6" />
-                  <h3 className="text-2xl font-black text-dark-gray mb-3 uppercase tracking-tight group-hover:text-primary transition-colors">
-                    {settore.title}
-                  </h3>
-                  <p className="text-gray-600 font-medium leading-relaxed">
-                    {settore.description}
-                  </p>
-                </div>
-                <div className="mt-auto grid grid-cols-2 gap-y-4 gap-x-2 pt-8 border-t border-gray-100">
-                  {settore.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-xs font-bold text-dark-gray uppercase tracking-widest">
-                      <span className="w-1 h-1 bg-primary mr-2 block"></span>
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+          {settori.map((s, idx) => (
+             <div key={idx} className="group flex flex-col p-8 rounded-3xl border border-gray-100 bg-white hover:bg-gray-50/50 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.02)] hover:shadow-[0_8px_30px_-4px_rgba(6,81,237,0.06)] transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+               <div className="w-14 h-14 rounded-2xl bg-primary/5 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                 <s.icon className="w-7 h-7 stroke-[2px]" />
+               </div>
+               <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">{s.category}</div>
+               <h3 className="text-2xl font-bold text-gray-900 mb-6">{s.title}</h3>
+               
+               <ul className="space-y-3 mb-8 mt-auto">
+                 {s.features.map((f, i) => (
+                   <li key={i} className="flex items-center text-sm font-medium text-gray-600">
+                     <CheckCircle className="w-4 h-4 text-primary shrink-0 mr-3 opacity-70" />
+                     {f}
+                   </li>
+                 ))}
+               </ul>
+               <button className="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 transition-transform">
+                 Scopri di più <ArrowRight className="w-4 h-4 ml-1" />
+               </button>
+             </div>
           ))}
         </div>
       </div>
@@ -267,83 +169,41 @@ const SettoriPrincipali = () => {
 
 const ApproccioLavoro = () => {
   const steps = [
-    {
-      title: "Audit e Analisi",
-      description: "Affianchiamo le aziende nell'analisi dettagliata dello stato di fatto, intercettando criticità e inefficienze operative.",
-      number: "01"
-    },
-    {
-      title: "Progettazione e Preventivo",
-      description: "Elaboriamo proposte strutturate, calcolando l'impatto tecnico-economico e dimensionando soluzioni su misura.",
-      number: "02"
-    },
-    {
-      title: "Deploy e Installazione",
-      description: "Il nostro team si occupa dell'approvvigionamento e dell'integrazione sul campo, assicurando l'operatività del cliente.",
-      number: "03"
-    },
-    {
-      title: "Assistance & Support",
-      description: "Garantiamo SLA rigorosi, manutenzione preventiva e assistenza attiva 24/7 post fornitura.",
-      number: "04"
-    }
+    { title: "Audit e Checkup", text: "Analizziamo l'infrastruttura esistente identificando colli di bottiglia e limiti operativi." },
+    { title: "Modellazione Scalabile", text: "Progettiamo soluzioni pronte a sostenere carichi futuri e scaling in tempo reale." },
+    { title: "Deploy e Migrazione", text: "Azione puntuale e fornitura sul campo, con zero downtime garantito." },
+    { title: "Supporto H24", text: "Monitoraggio, assistenza preventiva e Service Level Tracking continuativo." }
   ];
 
   return (
-    <section id="approccio" className="py-24 bg-dark-gray relative">
-      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div>
-            <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 shadow-sm rounded-[2px] mb-6">
-              <Zap className="w-4 h-4 text-white/50" />
-              <span className="text-white text-xs font-bold uppercase tracking-widest">Sistema Testato</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black mb-2 tracking-tight text-white uppercase">
-              Metodologia <br/>Operativa
-            </h2>
+    <section id="approccio" className="py-24 bg-gray-900 text-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-full h-full bg-grid-pattern opacity-10 pointer-events-none"></div>
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <div className="grid lg:grid-cols-5 gap-16">
+          <div className="lg:col-span-2 flex flex-col justify-center">
+             <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/10 rounded-full px-4 py-1.5 shadow-sm mb-6 text-white w-max">
+               <Shield className="w-4 h-4" />
+               <span className="text-xs font-semibold tracking-wide">Metodologia Tracciabile</span>
+             </div>
+             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 mt-4">
+                Metodo <br/>esatto.
+             </h2>
+             <p className="text-lg text-gray-400 font-medium leading-relaxed mb-10">
+                Garantiamo processi trasparenti, tempistiche rigorose e risultati misurabili. Nessun intermediario.
+             </p>
           </div>
-          <p className="text-lg text-gray-400 font-medium max-w-xl leading-relaxed border-l-2 border-white/10 pl-6">
-            Garantiamo processi trasparenti, tempistiche rigorose e risultati misurabili. Nessun intermediario aggiuntivo, un solo interlocutore per un'efficienza Enterprise.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-4 gap-[2px] bg-white/10 border border-white/10 rounded-[2px] overflow-hidden shadow-2xl">
-          {steps.map((step, index) => (
-            <div key={index} className="bg-dark-gray p-8 group hover:bg-[#15203b] transition-colors relative">
-              <div className="absolute right-6 top-6 text-6xl font-black text-white/5 group-hover:text-primary/10 transition-colors">
-                {step.number}
+          <div className="lg:col-span-3 grid sm:grid-cols-2 gap-6">
+            {steps.map((step, idx) => (
+              <div key={idx} className="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors group cursor-pointer relative overflow-hidden">
+                <div className="absolute -right-6 -bottom-6 text-9xl font-black text-white/5 group-hover:text-white/10 transition-colors select-none">
+                  {idx + 1}
+                </div>
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                  <p className="text-sm font-medium text-gray-400 leading-relaxed">{step.text}</p>
+                </div>
               </div>
-              <div className="relative z-10 pt-16">
-                <h3 className="text-xl font-black text-white mb-4 uppercase tracking-tight group-hover:text-primary transition-colors">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed font-medium">
-                  {step.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-20 pt-12 border-t border-white/10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 gap-y-12">
-            <div>
-              <div className="text-5xl font-black text-white tracking-tight">98%</div>
-              <div className="text-xs text-primary font-bold uppercase tracking-widest mt-3">Retention Clienti</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-white tracking-tight">48<span className="text-primary text-3xl">h</span></div>
-              <div className="text-xs text-primary font-bold uppercase tracking-widest mt-3">SLA Garantito</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-white tracking-tight">15<span className="text-primary text-3xl">+</span></div>
-              <div className="text-xs text-primary font-bold uppercase tracking-widest mt-3">Anni di Attività</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-white tracking-tight">100%</div>
-              <div className="text-xs text-primary font-bold uppercase tracking-widest mt-3">Gestione In-house</div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -352,54 +212,18 @@ const ApproccioLavoro = () => {
 };
 
 const PartnerSection = () => {
-  const partners = [
-    { name: "Microsoft", category: "Software & Cloud", logo: "/images/fornitori/Microsoft_logo.svg" },
-    { name: "Intel", category: "Hardware", logo: "/images/fornitori/Intel_logo.svg" },
-    { name: "Lenovo", category: "Computing", logo: "/images/fornitori/Lenovo_logo.svg" },
-    { name: "Epson", category: "Printing", logo: "/images/fornitori/Epson_logo.svg" },
-    { name: "Herman Miller", category: "Furniture", logo: "/images/fornitori/HermanMiller_logo.svg" },
-    { name: "Vitra", category: "Design", logo: "/images/fornitori/Logo_vitra.svg" },
-    { name: "Fellowes", category: "Office Solutions", logo: "/images/fornitori/Fellowes_Brands_logo.svg" },
-    { name: "Logitech", category: "Peripherals", logo: "/images/fornitori/Logitech_logo.svg" }
-  ];
-
+  const partners = ["Microsoft", "Intel", "Lenovo", "Epson", "Herman Miller", "Vitra", "Fellowes", "Logitech"];
   return (
-    <section className="py-24 bg-white relative border-t border-gray-200">
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="mb-16 flex flex-col items-center justify-center text-center">
-          <div className="inline-flex items-center space-x-3 bg-gray-50 border border-gray-200 px-4 py-2 shadow-sm rounded-[2px] mb-6">
-            <Shield className="w-4 h-4 text-primary" />
-            <span className="text-dark-gray text-xs font-bold uppercase tracking-widest">Partnership Inoltrate</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black text-dark-gray mb-4 tracking-tight uppercase">
-            Network <span className="text-primary">Fornitori</span>
-          </h2>
-          <p className="text-lg text-gray-500 font-medium max-w-2xl mx-auto">
-            Selezioniamo i brand leader del mercato per garantire i più alti standard qualitativi nelle forniture aziendali.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-[2px] bg-gray-200 border border-gray-200 rounded-[2px] overflow-hidden shadow-sm">
-          {partners.map((partner, index) => (
-            <div 
-              key={index}
-              className="group relative bg-white p-10 hover:bg-gray-50 transition-colors flex flex-col items-center justify-center min-h-[200px]"
-            >
-              <div className="w-32 h-16 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                <img 
-                  src={partner.logo} 
-                  alt={`${partner.name} logo`}
-                  className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                />
-              </div>
-              <div className="absolute bottom-4 text-center w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">
-                  {partner.category}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+    <section className="py-16 bg-gray-50 border-y border-gray-200">
+      <div className="container mx-auto px-6 text-center max-w-7xl">
+         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">Partner Ufficiali e Sistemi Certificati</p>
+         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60">
+           {partners.map((p, i) => (
+             <div key={i} className="text-xl font-extrabold text-gray-800 grayscale hover:grayscale-0 transition-all duration-300 hover:text-primary hover:opacity-100 cursor-default">
+               {p}
+             </div>
+           ))}
+         </div>
       </div>
     </section>
   );
@@ -407,107 +231,35 @@ const PartnerSection = () => {
 
 const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => {
   const cataloghi = [
-    {
-      title: "Informatica",
-      description: "Notebook, desktop, server, NAS, networking e licenze software aziendali.",
-      icon: Laptop,
-      image: "/images/informatica.jpg",
-      features: ["Hardware Enterprise", "Cloud Solutions", "Cybersecurity", "Software Licensing"],
-      stats: "2000+ Prodotti"
-    },
-    {
-      title: "Arredamento",
-      description: "Spazi operativi e direzionali progettati per l'efficienza organizzativa.",
-      icon: Chair,
-      image: "/images/arredo-ufficio.jpg",
-      features: ["Design Ergonomico", "Materiali Premium", "Personalizzazione", "Spazi Chiavi in Mano"],
-      stats: "1000+ Soluzioni"
-    },
-    {
-      title: "Consumabili",
-      description: "Ufficio strutturato con fornitura ricorrente di materiale tecnico e consumabili.",
-      icon: FileText,
-      image: "/images/forniture-e-materiali.jpg",
-      features: ["Stock Garantito", "Consegna Express", "Certificazioni", "Bulk Pricing"],
-      stats: "5000+ Articoli",
-      comingSoon: true,
-      comingSoonText: 'Q3 2026',
-    },
-    {
-      title: "Horeca",
-      description: "Sistemi automatizzati, impianti industriali e macchinari di alto livello.",
-      icon: Layers,
-      image: "/images/3094495_banco-vendita-gastronomia-degustazione-arredo-negozio-industriale-vetrina-refrigerata.jpg",
-      features: ["Impianti Alimentari", "Linee Produzione", "Confezionamento", "Automazione"],
-      stats: "500+ Macchinari"
-    },
+    { title: "Informatica Corporate", img: "/images/informatica.jpg", desc: "Equipaggia il tuo team con dispositivi enterprise-grade certificati.", cta: "Scopri Hardware" },
+    { title: "Design Operativo", img: "/images/arredo-ufficio.jpg", desc: "Progettazione degli spazi e fornitura di arredamento direzionale.", cta: "Vedi Soluzioni" },
+    { title: "Automazione Horeca", img: "/images/3094495_banco-vendita-gastronomia-degustazione-arredo-negozio-industriale-vetrina-refrigerata.jpg", desc: "Impiantistica alimentare ad alta potenza.", cta: "Scopri Impianti" },
   ];
 
   return (
-    <section id="catalogo" className="py-24 relative bg-cream border-t border-gray-200">
-      <div className="absolute inset-0 bg-grid-pattern opacity-60"></div>
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-3 bg-white border border-gray-200 px-4 py-2 shadow-sm rounded-[2px] mb-6">
-            <Layers className="w-4 h-4 text-primary" />
-            <span className="text-dark-gray text-xs font-bold uppercase tracking-widest">Offerta Prodotti</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl font-black text-dark-gray mb-4 tracking-tight uppercase">
-            Catalogo <span className="text-primary">Forniture</span>
+    <section id="catalogo" className="py-24 bg-white relative">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4">
+            Catalogo Forniture
           </h2>
           <p className="text-lg text-gray-500 font-medium max-w-2xl mx-auto">
-            Scopri la nostra gamma completa organizzata per settore divisionale.
+            Accedi direttamente al più grande distaccamento europeo di soluzioni B2B approvate per l'industria.
           </p>
         </div>
-
-        <div className="space-y-[2px] bg-gray-200 border border-gray-200 rounded-[2px] overflow-hidden shadow-sm">
-          {cataloghi.map((catalogo, index) => (
-            <div 
-              key={index}
-              className={`p-10 md:p-16 bg-white relative group ${catalogo.comingSoon ? 'grayscale opacity-70' : ''}`}
-            >
-              <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                <div className={`space-y-8 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                  <div className="flex items-center space-x-6 mb-8">
-                    <div className="w-16 h-16 bg-gray-50 border border-gray-200 rounded-[2px] flex items-center justify-center shadow-sm">
-                      <catalogo.icon className="w-8 h-8 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-3xl font-black text-dark-gray uppercase tracking-tight">
-                        {catalogo.title}
-                      </h3>
-                      <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">
-                        {catalogo.comingSoon ? catalogo.comingSoonText : catalogo.stats}
-                      </div>
-                    </div>
-                  </div>
-
-                  <p className="text-lg text-gray-600 font-medium leading-relaxed border-l-2 border-primary pl-4">
-                    {catalogo.description}
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-4 pt-4">
-                    {catalogo.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center space-x-3">
-                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span className="text-dark-gray text-xs font-bold uppercase tracking-widest">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <div className="relative border border-gray-200 rounded-[2px] overflow-hidden shadow-sm aspect-video">
-                    <img 
-                      src={catalogo.image} 
-                      alt={catalogo.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                    />
-                    <div className="absolute inset-0 border border-transparent group-hover:border-primary/20 transition-colors pointer-events-none z-10"></div>
-                  </div>
-                </div>
-              </div>
+        <div className="grid lg:grid-cols-3 gap-8">
+          {cataloghi.map((cat, idx) => (
+            <div key={idx} className="group relative flex flex-col rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-[0_8px_30px_-4px_rgba(6,81,237,0.1)] transition-all duration-500 transform hover:-translate-y-2 cursor-pointer">
+               <div className="aspect-[4/3] relative overflow-hidden bg-gray-100">
+                  <img src={cat.img} alt={cat.title} className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+               </div>
+               <div className="p-8 flex-1 flex flex-col">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{cat.title}</h3>
+                  <p className="text-gray-500 font-medium mb-6 leading-relaxed flex-1">{cat.desc}</p>
+                  <button className="flex items-center text-primary font-bold text-sm tracking-wide mt-auto group-hover:translate-x-1 transition-transform">
+                    {cat.cta} <ArrowRight className="w-4 h-4 ml-1" />
+                  </button>
+               </div>
             </div>
           ))}
         </div>
@@ -517,112 +269,52 @@ const CatalogoSettori = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
 };
 
 const ContattiSection = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => {
-  const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    messaggio: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-    alert('Messaggio inviato! Ti contatteremo presto.');
-    setFormData({ nome: '', email: '', messaggio: '' });
-      setIsSubmitting(false);
-    }, 1000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
   return (
-    <section id="contatti" className="py-24 bg-dark-gray relative">
-      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-      
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 shadow-sm rounded-[2px] mb-6">
-            <Mail className="w-4 h-4 text-primary" />
-            <span className="text-white text-xs font-bold uppercase tracking-widest">Inizia il Progetto</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tight">
-            Contattaci
-          </h2>
-          <p className="text-xl text-white/70 font-medium max-w-2xl mx-auto leading-relaxed border-l-2 border-primary pl-4 text-left">
-            Richiedi un audit operativo gratuito o un preventivo di fornitura. Tempi di risposta medi: under 24h.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-[2px] bg-white/10 border border-white/10 rounded-[2px] p-[2px] shadow-2xl">
-          {/* Contatti */}
-          <div className="flex flex-col gap-[2px]">
-            <div className="group flex flex-col items-start gap-4 bg-dark-gray p-8 hover:bg-[#15203b] transition-colors relative h-full">
-              <MapPin className="w-8 h-8 text-white mb-2" />
-              <div>
-                <h3 className="text-xl font-bold text-white mb-1 uppercase">Sede Operativa</h3>
-                <p className="text-white/60 text-sm font-medium mb-4">Via Nazionale delle Puglie, 7<br/>Casalnuovo di Napoli (NA), 80013</p>
-                <a href="https://www.google.com/maps?q=Via+Nazionale+delle+Puglie,+7,+Casalnuovo+di+Napoli+(NA)" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-white uppercase text-[10px] font-bold tracking-widest flex items-center gap-1 transition-colors">Google Maps <ArrowRight className="w-3 h-3" /></a>
-              </div>
-            </div>
-            <div className="group flex flex-col items-start gap-4 bg-dark-gray p-8 hover:bg-[#15203b] transition-colors relative h-full">
-              <MapPin className="w-8 h-8 text-white mb-2" />
-              <div>
-                <h3 className="text-xl font-bold text-white mb-1 uppercase">Sede Legale</h3>
-                <p className="text-white/60 text-sm font-medium mb-4">Via San Lazzaro, 55<br/>Frignano (CE), 81030</p>
-                <a href="https://www.google.com/maps?q=Via+San+Lazzaro,+55,+Frignano+(CE)" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-white uppercase text-[10px] font-bold tracking-widest flex items-center gap-1 transition-colors">Google Maps <ArrowRight className="w-3 h-3" /></a>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-[2px]">
-              <div className="group flex flex-col items-start gap-4 bg-dark-gray p-8 hover:bg-[#15203b] transition-colors relative h-full">
-                <Phone className="w-8 h-8 text-white mb-2" />
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-1 uppercase">Telefono</h3>
-                  <p className="text-white/80 text-sm font-bold">+39 081 1893 9337</p>
-                  <p className="text-white/40 text-xs font-medium mt-1">H24/7</p>
-                </div>
-              </div>
-              <div className="group flex flex-col items-start gap-4 bg-dark-gray p-8 hover:bg-[#15203b] transition-colors relative h-full">
-                <Calendar className="w-8 h-8 text-white mb-2" />
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-1 uppercase">Orari</h3>
-                  <div className="text-white/80 text-sm font-medium">L-V: 08-18<br/>S: 09-13</div>
-                </div>
-              </div>
+    <section id="contatti" className="py-24 bg-gray-50 border-y border-gray-100 relative">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <div className="grid lg:grid-cols-5 gap-16 bg-white rounded-[2rem] shadow-[0_8px_30px_-4px_rgba(6,81,237,0.05)] border border-gray-100/80 overflow-hidden">
+          <div className="p-10 lg:p-16 flex flex-col justify-between bg-primary lg:col-span-2 text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white/10 blur-3xl"></div>
+            <div className="relative z-10">
+              <Mail className="w-12 h-12 mb-8 text-white stroke-[2px]" />
+              <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-6">Inizia la <br/>collaborazione.</h2>
+              <p className="text-lg font-medium opacity-90 mb-12">
+                Un Service Manager dedicato è pronto a elaborare un preventivo personalizzato under 24h.
+              </p>
+              <a href="mailto:info@b2b-group.it" className="inline-flex items-center justify-center bg-white text-primary hover:bg-gray-50 transition-colors font-bold rounded-2xl px-8 py-4 w-full shadow-lg">
+                Scrivici un'email
+              </a>
             </div>
           </div>
-
-          <div className="flex flex-col h-full">
-            <div className="bg-dark-gray p-12 h-full flex flex-col justify-center relative group">
-               <Mail className="w-8 h-8 text-primary mb-6" />
-               <h3 className="text-3xl font-black text-white mb-4 tracking-tight uppercase">Email Diretta</h3>
-               <p className="text-white/60 font-medium mb-12">Scrivici direttamente per ricevere documentazione, listini o un primo audit.</p>
-               
-               <div className="space-y-4 mb-12">
-                 <div>
-                   <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">Informazioni Commerciali</p>
-                   <p className="text-white text-xl font-bold">info@b2b-group.it</p>
-                 </div>
-                 <div>
-                   <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">Amministrazione PEC</p>
-                   <p className="text-white text-xl font-bold">b2bgroupsrls@pec.it</p>
-                 </div>
+          <div className="p-10 lg:p-16 lg:col-span-3 grid sm:grid-cols-2 gap-x-8 gap-y-12">
+             <div className="group cursor-default">
+               <div className="w-12 h-12 bg-gray-50 text-gray-700 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+                 <MapPin className="w-6 h-6 stroke-[2px]" />
                </div>
-
-               <a 
-                 href="mailto:info@b2b-group.it"
-                 className="mt-auto inline-flex items-center justify-center bg-primary text-white border border-primary px-8 py-4 font-bold text-xs uppercase tracking-widest hover:bg-transparent hover:text-white transition-colors duration-300 w-full rounded-[2px]"
-               >
-                 Invia Richiesta
-               </a>
-            </div>
+               <h3 className="text-gray-900 font-bold mb-2 text-lg">Quartier Generale</h3>
+               <p className="text-gray-500 font-medium">Via Nazionale delle Puglie 7<br/>Casalnuovo di Napoli (NA)</p>
+             </div>
+             <div className="group cursor-default">
+               <div className="w-12 h-12 bg-gray-50 text-gray-700 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+                 <Phone className="w-6 h-6 stroke-[2px]" />
+               </div>
+               <h3 className="text-gray-900 font-bold mb-2 text-lg">Telecomunicazioni</h3>
+               <p className="text-gray-500 font-medium">+39 081 1893 9337<br/>Supporto H24 disponibile</p>
+             </div>
+             <div className="group cursor-default">
+               <div className="w-12 h-12 bg-gray-50 text-gray-700 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+                 <MapPin className="w-6 h-6 stroke-[2px]" />
+               </div>
+               <h3 className="text-gray-900 font-bold mb-2 text-lg">Sede Legale</h3>
+               <p className="text-gray-500 font-medium">Via San Lazzaro 55<br/>Frignano (CE)</p>
+             </div>
+             <div className="group cursor-default">
+               <div className="w-12 h-12 bg-gray-50 text-gray-700 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+                 <Calendar className="w-6 h-6 stroke-[2px]" />
+               </div>
+               <h3 className="text-gray-900 font-bold mb-2 text-lg">Orari Operativi</h3>
+               <p className="text-gray-500 font-medium">Lunedì-Venerdì: 08:00 - 18:00<br/>Sabato: 09:00 - 13:00</p>
+             </div>
           </div>
         </div>
       </div>
@@ -632,25 +324,27 @@ const ContattiSection = ({ onQuoteRequest }: { onQuoteRequest: () => void }) => 
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0b101d] py-10 border-t border-white/5">
-      <div className="container mx-auto px-6 grid md:grid-cols-2 gap-8 items-center border-b border-white/5 pb-10 mb-6">
-        <div>
-           <img src="/images/logo/logodef.svg" alt="B2B Group Logo" className="h-8 grayscale brightness-200 opacity-60 mb-4" />
-           <p className="text-white/40 text-xs font-medium max-w-sm">Asset e forniture di alto livello progettate per supportare l'espansione del tuo business in ambito IT, office, arredo direzionale e impianti industriali.</p>
+    <footer className="bg-gray-900 pt-20 pb-10 border-t border-gray-800 text-gray-400">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <div className="grid md:grid-cols-2 gap-12 border-b border-white/10 pb-12 mb-10">
+          <div>
+             <img src="/images/logo/logodef.svg" alt="B2B Group" className="h-10 grayscale brightness-200 opacity-80 mb-6" />
+             <p className="font-medium max-w-md text-sm leading-relaxed text-gray-400">
+               Infrastruttura globale e fornitura enterprise. Ecosistemi operativi per la scalabilità del tuo business dal 2010.
+             </p>
+          </div>
+          <div className="flex md:justify-end items-end pb-2">
+             <a href="mailto:info@b2b-group.it" className="text-2xl md:text-3xl font-extrabold text-white hover:text-primary transition-colors hover:underline decoration-primary/50 underline-offset-8">
+               Avvia progetto condiviso
+             </a>
+          </div>
         </div>
-        <div className="flex flex-col md:items-end">
-           <a href="mailto:info@b2b-group.it" className="inline-block border border-white/20 text-white text-xs font-bold px-8 py-3 rounded-[2px] hover:bg-white hover:text-dark-gray transition-colors tracking-widest uppercase">
-             Richiedi Preventivo Rapido
-           </a>
-        </div>
-      </div>
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-        <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest">
-          &copy; {new Date().getFullYear()} B2B Group SRLS. P.IVA 09292831210. Tutti i diritti riservati.
-        </p>
-        <div className="text-white/30 text-[10px] font-bold uppercase tracking-widest mt-4 md:mt-0 flex gap-4">
-          <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-primary transition-colors">Termini Legali</a>
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm font-semibold gap-4">
+          <p>&copy; {new Date().getFullYear()} B2B GROUP SRLS. P.IVA 09292831210.</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Termini Legali</a>
+          </div>
         </div>
       </div>
     </footer>
